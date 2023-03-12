@@ -7,6 +7,7 @@ import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { ALLOW_ANONYMOUS, DA_SERVICE_TOKEN, ITokenService, SocialOpenType, SocialService } from '@delon/auth';
 import { SettingsService, _HttpClient } from '@delon/theme';
 import { environment } from '@env/environment';
+import { encrypt, decrypt, PrivateKey, PublicKey } from 'eciesjs';
 import { NzTabChangeEvent } from 'ng-zorro-antd/tabs';
 import { finalize } from 'rxjs';
 
@@ -29,7 +30,8 @@ export class UserLoginComponent implements OnDestroy {
     @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService,
     private startupSrv: StartupService,
     private http: _HttpClient,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private publicKey: string = ''
   ) {}
 
   // #region fields
@@ -73,7 +75,6 @@ export class UserLoginComponent implements OnDestroy {
   }
 
   // #endregion
-
   submit(): void {
     this.error = '';
     if (this.type === 0) {
@@ -85,6 +86,10 @@ export class UserLoginComponent implements OnDestroy {
       if (userName.invalid || password.invalid) {
         return;
       }
+      this.http.get<string>('/user/getPublicKey').subscribe(data => (this.publicKey = data));
+      const k1 = new PublicKey(new Buffer(this.publicKey, 'base64'));
+      var data = userName.getRawValue();
+      password.setValue(encrypt(k1.toHex(), new Buffer(data, 'base64')).toString());
     } else {
       const { mobile, captcha } = this.form.controls;
       mobile.markAsDirty();
@@ -106,6 +111,7 @@ export class UserLoginComponent implements OnDestroy {
         {
           type: this.type,
           userName: this.form.value.userName,
+          publicKey: this.publicKey,
           password: this.form.value.password
         },
         null,
