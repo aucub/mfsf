@@ -164,3 +164,33 @@ export interface BaseResponseLinkedHashMapStringObject {
   message?: string;
   data?: Record<string, object>;
 }
+
+export interface PageListRes {
+  code: number;
+  message: string;
+  data: {
+    records: {
+      id: string;
+      username: string;
+      nickname: string;
+      status: boolean;
+      createTime: Record<string, unknown>;
+      lastUpdateTime: Record<string, unknown>;
+      loginTime: Record<string, unknown>;
+      note: string;
+    }[];
+    total: number;
+    size: number;
+    current: number;
+    orders: {
+      column: string;
+      asc: boolean;
+    }[];
+    optimizeCountSql: boolean;
+    searchCount: boolean;
+    optimizeJoinOfCountSql: boolean;
+    maxLimit: number;
+    countId: string;
+    pages: number;
+  };
+}
