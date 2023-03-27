@@ -4,6 +4,7 @@
   </ng-template>
 </page-header>
 <nz-card>
+  <button nz-button (click)="st.export()">Export</button>
   <sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>
   <st
     #st
@@ -11,5 +12,15 @@
     [req]="{ method: method, reName: reName, allInBody: allInBody, params: params }"
     [res]="{ reName: resReName }"
     [columns]="columns"
-  ></st>
+    (change)="change($event)"
+  >
+    <ng-template st-row="nicknameTpl" let-item let-index="index">
+      <input *ngIf="item.edit" nz-input [ngModel]="item.nickname" (ngModelChange)="st.setRow(index, { nickname: $event })" />
+      <ng-container *ngIf="!item.edit">{{ item.nickname }}</ng-container>
+    </ng-template>
+    <ng-template st-row="noteTpl" let-item let-index="index">
+      <input *ngIf="item.edit" nz-input [ngModel]="item.note" (ngModelChange)="st.setRow(index, { note: $event })" />
+      <ng-container *ngIf="!item.edit">{{ item.note }}</ng-container>
+    </ng-template>
+  </st>
 </nz-card>

@@ -38,7 +38,7 @@
     "@delon/auth": "^15.1.0",
     "@delon/cache": "^15.0.1",
     "@delon/chart": "^15.0.1",
-    "@delon/form": "^15.0.1",
+    "@delon/form": "^15.1.0",
     "@delon/mock": "^15.0.1",
     "@delon/theme": "^15.0.1",
     "@delon/util": "^15.0.1",

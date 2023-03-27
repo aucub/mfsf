@@ -1547,7 +1547,7 @@
     echarts "^5.4.1"
     tslib "^2.3.0"
 
-"@delon/form@^15.0.1":
+"@delon/form@^15.1.0":
   version "15.1.0"
   resolved "https://registry.npmmirror.com/@delon/form/-/form-15.1.0.tgz#deeeec85b8739d6263d27b843e3d70620affc791"
   integrity sha512-mI0FKC77VV8VxyNNanGASS80dyuUDQLCoK2f8MJfoRgSgpo7KquRTf9Dv18TslgxAa03eSIyPfZwwoI4qHknyQ==
