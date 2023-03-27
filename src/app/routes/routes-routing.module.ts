@@ -25,11 +25,10 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent, data: { title: '仪表盘', titleI18n: 'dashboard' } },
-      { path: 'exception', loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule) },
+      { path: 'exception', loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule) }
       // 业务子模块
       // { path: 'widgets', loadChildren: () => import('./widgets/widgets.module').then(m => m.WidgetsModule) },
-      { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) }
-    ]
+    ,  { path: 'user', loadChildren: () => import('./user/user.module').then((m) => m.UserModule) }]
   },
   // 空白布局
   // {
@@ -63,6 +62,6 @@ const routes: Routes = [
       scrollPositionRestoration: 'top'
       }
     )],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class RouteRoutingModule { }
+export class RouteRoutingModule {}
