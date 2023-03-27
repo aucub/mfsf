@@ -3,19 +3,12 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestro
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StartupService } from '@core';
-import {ReuseTabService} from '@delon/abc/reuse-tab';
-import {
-  ALLOW_ANONYMOUS,
-  DA_SERVICE_TOKEN,
-  ITokenModel,
-  ITokenService,
-  SocialOpenType,
-  SocialService
-} from '@delon/auth';
-import {SettingsService, _HttpClient} from '@delon/theme';
-import {environment} from '@env/environment';
-import {DoLogin2Res} from '@sta';
-import {NzTabChangeEvent} from 'ng-zorro-antd/tabs';
+import { ReuseTabService } from '@delon/abc/reuse-tab';
+import { ALLOW_ANONYMOUS, DA_SERVICE_TOKEN, ITokenModel, ITokenService, SocialOpenType, SocialService } from '@delon/auth';
+import { SettingsService, _HttpClient } from '@delon/theme';
+import { environment } from '@env/environment';
+import { DoLogin2Res } from '@sta';
+import { NzTabChangeEvent } from 'ng-zorro-antd/tabs';
 import { finalize } from 'rxjs';
 
 @Component({
@@ -137,7 +130,7 @@ export class UserLoginComponent implements OnDestroy {
         // 设置用户Token信息
         // TODO: Mock expired value
         res.data.tokenTimeout = +new Date() + 1000 * 60 * 5;
-        const token: ITokenModel = {token: res.data.tokenValue, expired: res.data.tokenTimeout};
+        const token: ITokenModel = { token: res.data.tokenValue, expired: res.data.tokenTimeout };
         this.tokenService.set(token);
         // 重新获取 StartupService 内容，我们始终认为应用信息一般都会受当前用户授权范围而影响
         this.startupSrv.load().subscribe(() => {
