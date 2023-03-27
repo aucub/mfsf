@@ -78,7 +78,8 @@
               "ajv-formats",
               "extend",
               "file-saver",
-              "mockjs"
+              "mockjs",
+              "lodash"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

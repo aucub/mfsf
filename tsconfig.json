@@ -32,6 +32,12 @@
       ],
       "@env/*": [
         "src/environments/*"
+      ],
+      "@sta": [
+        "src/app/_sta/index"
+      ],
+      "@sta/*": [
+        "src/app/_sta/*"
       ]
     }
   },

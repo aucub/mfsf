@@ -6,6 +6,10 @@
  * Note: The proxy is only valid for real requests, Mock does not actually generate requests, so the priority of Mock will be higher than the proxy
  */
 module.exports = {
+  '/': {
+    target: 'http://localhost:8080/',
+    secure: false
+  }
   /**
    * The following means that all requests are directed to the backend `https://localhost:9000/`
    */

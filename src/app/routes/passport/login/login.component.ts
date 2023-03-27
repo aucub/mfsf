@@ -7,7 +7,6 @@ import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { ALLOW_ANONYMOUS, DA_SERVICE_TOKEN, ITokenService, SocialOpenType, SocialService } from '@delon/auth';
 import { SettingsService, _HttpClient } from '@delon/theme';
 import { environment } from '@env/environment';
-import { encrypt, decrypt, PrivateKey, PublicKey } from 'eciesjs';
 import { NzTabChangeEvent } from 'ng-zorro-antd/tabs';
 import { finalize } from 'rxjs';
 
@@ -19,6 +18,16 @@ import { finalize } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserLoginComponent implements OnDestroy {
+  form = this.fb.nonNullable.group({
+    userName: ['', [Validators.required, Validators.pattern(/^(root|user)$/)]],
+    password: ['', [Validators.required, Validators.pattern(/^(root)$/)]],
+    mobile: ['', [Validators.required, Validators.pattern(/^1\d{10}$/)]],
+    captcha: ['', [Validators.required]],
+    remember: [true]
+  });
+
+  // #region fields
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -30,19 +39,8 @@ export class UserLoginComponent implements OnDestroy {
     @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService,
     private startupSrv: StartupService,
     private http: _HttpClient,
-    private cdr: ChangeDetectorRef,
-    private publicKey: string = ''
+    private cdr: ChangeDetectorRef
   ) {}
-
-  // #region fields
-
-  form = this.fb.nonNullable.group({
-    userName: ['', [Validators.required, Validators.pattern(/^(admin|user)$/)]],
-    password: ['', [Validators.required, Validators.pattern(/^(ng\-alain\.com)$/)]],
-    mobile: ['', [Validators.required, Validators.pattern(/^1\d{10}$/)]],
-    captcha: ['', [Validators.required]],
-    remember: [true]
-  });
   error = '';
   type = 0;
   loading = false;
@@ -86,10 +84,6 @@ export class UserLoginComponent implements OnDestroy {
       if (userName.invalid || password.invalid) {
         return;
       }
-      this.http.get<string>('/user/getPublicKey').subscribe(data => (this.publicKey = data));
-      const k1 = new PublicKey(new Buffer(this.publicKey, 'base64'));
-      var data = userName.getRawValue();
-      password.setValue(encrypt(k1.toHex(), new Buffer(data, 'base64')).toString());
     } else {
       const { mobile, captcha } = this.form.controls;
       mobile.markAsDirty();
@@ -107,11 +101,10 @@ export class UserLoginComponent implements OnDestroy {
     this.cdr.detectChanges();
     this.http
       .post(
-        '/login/account',
+        '/user/doLogin2',
         {
-          type: this.type,
-          userName: this.form.value.userName,
-          publicKey: this.publicKey,
+          //type: this.type,
+          username: this.form.value.userName,
           password: this.form.value.password
         },
         null,
@@ -126,7 +119,7 @@ export class UserLoginComponent implements OnDestroy {
         })
       )
       .subscribe(res => {
-        if (res.msg !== 'ok') {
+        if (res.msg !== '操作成功') {
           this.error = res.msg;
           this.cdr.detectChanges();
           return;
@@ -152,7 +145,7 @@ export class UserLoginComponent implements OnDestroy {
 
   open(type: string, openType: SocialOpenType = 'href'): void {
     let url = ``;
-    let callback = ``;
+    let callback: string;
     if (environment.production) {
       callback = `https://ng-alain.github.io/ng-alain/#/passport/callback/${type}`;
     } else {
