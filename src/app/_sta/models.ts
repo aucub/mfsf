@@ -140,6 +140,24 @@ export interface Permission {
   status?: number;
 }
 
+export interface DoLogin2Res {
+  code: number;
+  message: string;
+  data: {
+    tokenName: string;
+    tokenValue: string;
+    isLogin: boolean;
+    loginId: Record<string, unknown>;
+    loginType: string;
+    tokenTimeout: number;
+    sessionTimeout: number;
+    tokenSessionTimeout: number;
+    tokenActivityTimeout: number;
+    loginDevice: string;
+    tag: string;
+  };
+}
+
 export interface BaseResponseLinkedHashMapStringObject {
   /** @format int32 */
   code?: number;

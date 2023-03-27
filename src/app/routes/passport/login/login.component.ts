@@ -3,11 +3,19 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestro
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StartupService } from '@core';
-import { ReuseTabService } from '@delon/abc/reuse-tab';
-import { ALLOW_ANONYMOUS, DA_SERVICE_TOKEN, ITokenService, SocialOpenType, SocialService } from '@delon/auth';
-import { SettingsService, _HttpClient } from '@delon/theme';
-import { environment } from '@env/environment';
-import { NzTabChangeEvent } from 'ng-zorro-antd/tabs';
+import {ReuseTabService} from '@delon/abc/reuse-tab';
+import {
+  ALLOW_ANONYMOUS,
+  DA_SERVICE_TOKEN,
+  ITokenModel,
+  ITokenService,
+  SocialOpenType,
+  SocialService
+} from '@delon/auth';
+import {SettingsService, _HttpClient} from '@delon/theme';
+import {environment} from '@env/environment';
+import {DoLogin2Res} from '@sta';
+import {NzTabChangeEvent} from 'ng-zorro-antd/tabs';
 import { finalize } from 'rxjs';
 
 @Component({
@@ -100,17 +108,17 @@ export class UserLoginComponent implements OnDestroy {
     this.loading = true;
     this.cdr.detectChanges();
     this.http
-      .post(
+      .post<DoLogin2Res>(
         '/user/doLogin2',
         {
           //type: this.type,
           username: this.form.value.userName,
           password: this.form.value.password
         },
-        null,
-        {
+        null
+        /*{
           context: new HttpContext().set(ALLOW_ANONYMOUS, true)
-        }
+        }*/
       )
       .pipe(
         finalize(() => {
@@ -119,8 +127,8 @@ export class UserLoginComponent implements OnDestroy {
         })
       )
       .subscribe(res => {
-        if (res.msg !== '操作成功') {
-          this.error = res.msg;
+        if (res.message !== '操作成功') {
+          this.error = res.message;
           this.cdr.detectChanges();
           return;
         }
@@ -128,8 +136,9 @@ export class UserLoginComponent implements OnDestroy {
         this.reuseTabService.clear();
         // 设置用户Token信息
         // TODO: Mock expired value
-        res.user.expired = +new Date() + 1000 * 60 * 5;
-        this.tokenService.set(res.user);
+        res.data.tokenTimeout = +new Date() + 1000 * 60 * 5;
+        const token: ITokenModel = {token: res.data.tokenValue, expired: res.data.tokenTimeout};
+        this.tokenService.set(token);
         // 重新获取 StartupService 内容，我们始终认为应用信息一般都会受当前用户授权范围而影响
         this.startupSrv.load().subscribe(() => {
           let url = this.tokenService.referrer!.url || '/';
