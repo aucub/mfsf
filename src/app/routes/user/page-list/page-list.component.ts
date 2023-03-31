@@ -1,7 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { STChange, STColumn, STComponent, STData } from '@delon/abc/st';
-import { SFSchema } from '@delon/form';
-import { ModalHelper, _HttpClient } from '@delon/theme';
+import {Component, ViewChild} from '@angular/core';
+import {STChange, STColumn, STComponent, STData} from '@delon/abc/st';
+import {SFSchema} from '@delon/form';
+import {_HttpClient, ModalHelper} from '@delon/theme';
+import {BaseResponseListRole, Role} from '@sta';
+import {of} from 'rxjs';
 
 @Component({
   selector: 'app-user-page-list',
@@ -10,10 +12,11 @@ import { ModalHelper, _HttpClient } from '@delon/theme';
 export class UserPageListComponent {
   url = `/user/pageList`;
   method = 'POST';
-  reName = { pi: 'pageNum', ps: 'pageSize' };
+  reName = {pi: 'pageNum', ps: 'pageSize'};
   allInBody = true;
-  params = { keyword: '' };
-  resReName = { list: 'data.records' };
+  params = {keyword: '', roleId: ''};
+  resReName = {list: 'data.records'};
+  roles: Role[] = [{id: '', name: '', description: '', status: 0}];
 
   change(e: STChange): void {
     console.log('change', e);
@@ -64,16 +67,34 @@ export class UserPageListComponent {
     JSON.stringify(this.st.pureItem(i));
     this.updateEdit(i, false);
   }
-
-  private updateEdit(i: STData, edit: boolean): void {
-    this.st.setRow(i, { edit }, { refreshSchema: true });
-  }
-
-  constructor(private http: _HttpClient, private modal: ModalHelper) {}
+  protected readonly of = of;
+  protected readonly name = name;
 
   add(): void {
     // this.modal
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
+  }
+
+  constructor(private http: _HttpClient, private modal: ModalHelper) {
+  }
+
+  selectRole(data: string): void {
+    // @ts-ignore
+    this.params = {keyword: '', roleId: data};
+    this.st.reload(this.params);
+  }
+
+  ngOnInit(): void {
+    this.http.get<BaseResponseListRole>('/role/list').subscribe(res => {
+      {
+        // @ts-ignore
+        this.roles = res.data;
+      }
+    });
+  }
+
+  private updateEdit(i: STData, edit: boolean): void {
+    this.st.setRow(i, {edit}, {refreshSchema: true});
   }
 }

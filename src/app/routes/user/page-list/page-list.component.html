@@ -6,6 +6,15 @@
 <nz-card>
   <button nz-button (click)="st.export()">Export</button>
   <sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>
+  <a [nzDropdownMenu]="menu" nz-dropdown>
+    Hover me, Click menu item
+    <span nz-icon nzType="down"></span>
+  </a>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu>
+      <li (click)="selectRole(item.id || '')" *ngFor="let item of roles" nz-menu-item>{{ item.name }}</li>
+    </ul>
+  </nz-dropdown-menu>
   <st
     #st
     [data]="url"
@@ -15,7 +24,8 @@
     (change)="change($event)"
   >
     <ng-template st-row="nicknameTpl" let-item let-index="index">
-      <input *ngIf="item.edit" nz-input [ngModel]="item.nickname" (ngModelChange)="st.setRow(index, { nickname: $event })" />
+      <input (ngModelChange)="st.setRow(index, { nickname: $event })" *ngIf="item.edit" [ngModel]="item.nickname"
+             nz-input/>
       <ng-container *ngIf="!item.edit">{{ item.nickname }}</ng-container>
     </ng-template>
     <ng-template st-row="noteTpl" let-item let-index="index">
