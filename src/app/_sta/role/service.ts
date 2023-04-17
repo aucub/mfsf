@@ -16,10 +16,10 @@ import type {
   RolePermissionDto
 } from '../models';
 import {STABaseService, STAHttpOptions} from '../_base.service';
-import type {角色管理Delete1Request, 角色管理ListPermissionRequest} from './dtos';
+import type {RoleDelete1Request, RoleListPermissionRequest} from './dtos';
 
 @Injectable({providedIn: 'root'})
-export class 角色管理Service extends STABaseService {
+export class RoleService extends STABaseService {
   /**
    * 修改
    *
@@ -49,7 +49,7 @@ export class 角色管理Service extends STABaseService {
    *
    * @request POST:/role/delete
    */
-  delete1(req: 角色管理Delete1Request, options?: STAHttpOptions): Observable<BaseResponseString> {
+  delete1(req: RoleDelete1Request, options?: STAHttpOptions): Observable<BaseResponseString> {
     return this.request('POST', `/role/delete`, {
       params: req,
       ...options
@@ -73,7 +73,7 @@ export class 角色管理Service extends STABaseService {
    *
    * @request GET:/role/list
    */
-  getRoleList(options?: STAHttpOptions): Observable<BaseResponseListRole> {
+  list2(options?: STAHttpOptions): Observable<BaseResponseListRole> {
     return this.request('GET', `/role/list`, {
       ...options
     });
@@ -84,7 +84,7 @@ export class 角色管理Service extends STABaseService {
    *
    * @request GET:/role/listPermission
    */
-  listPermission(req: 角色管理ListPermissionRequest, options?: STAHttpOptions): Observable<BaseResponseListPermission> {
+  listPermission(req: RoleListPermissionRequest, options?: STAHttpOptions): Observable<BaseResponseListPermission> {
     return this.request('GET', `/role/listPermission`, {
       params: req,
       ...options

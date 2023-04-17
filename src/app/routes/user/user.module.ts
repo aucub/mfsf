@@ -1,12 +1,11 @@
-import { NgModule, Type } from '@angular/core';
-import { SharedModule } from '@shared';
-import { UserRoutingModule } from './user-routing.module';
-import { UserService } from './user.service';
-import { UserPageListComponent } from './page-list/page-list.component';
-import { UserPageListService } from './page-list/page-list.service';
+import {NgModule, Type} from '@angular/core';
+import {SharedModule} from '@shared';
+import {UserRoutingModule} from './user-routing.module';
+import {UserService} from './user.service';
+import {UserListComponent} from './list/list.component';
 
 const COMPONENTS: Type<void>[] = [
-  UserPageListComponent];
+  UserListComponent];
 
 @NgModule({
   imports: [
@@ -15,8 +14,7 @@ const COMPONENTS: Type<void>[] = [
   ],
   declarations: COMPONENTS,
   providers: [
-    UserService,
-    UserPageListService
+    UserService
   ],
 })
 export class UserModule { }

@@ -10,16 +10,16 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import type {BaseResponseString} from '../models';
 import {STABaseService, STAHttpOptions} from '../_base.service';
-import type {账号注销KickoutRequest, 账号注销LogoutRequest} from './dtos';
+import type {KickoutKickoutRequest, KickoutLogoutRequest} from './dtos';
 
 @Injectable({providedIn: 'root'})
-export class 账号注销Service extends STABaseService {
+export class KickoutService extends STABaseService {
   /**
    * 将指定账号强制注销
    *
    * @request POST:/kickout/logout
    */
-  logout(req: 账号注销LogoutRequest, options?: STAHttpOptions): Observable<BaseResponseString> {
+  logout(req: KickoutLogoutRequest, options?: STAHttpOptions): Observable<BaseResponseString> {
     return this.request('POST', `/kickout/logout`, {
       params: req,
       ...options
@@ -31,7 +31,7 @@ export class 账号注销Service extends STABaseService {
    *
    * @request POST:/kickout/kickout
    */
-  kickout(req: 账号注销KickoutRequest, options?: STAHttpOptions): Observable<BaseResponseString> {
+  kickout(req: KickoutKickoutRequest, options?: STAHttpOptions): Observable<BaseResponseString> {
     return this.request('POST', `/kickout/kickout`, {
       params: req,
       ...options

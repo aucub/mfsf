@@ -36,7 +36,7 @@ export const STA_OPTIONS = new InjectionToken<STAOptions>('STA_OPTIONS', {
 
 @Injectable()
 export class STABaseService {
-  readonly baseUrl: string = 'http://47.113.201.150:8080';
+  readonly baseUrl: string = 'http://localhost:8080/admin';
 
   constructor(@Optional() @Inject(STA_OPTIONS) private globalOptions: STAOptions, protected http: _HttpClient) {
   }

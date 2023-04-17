@@ -12,14 +12,14 @@ import type {BaseResponseListSaSession, SearchSessionDto} from '../models';
 import {STABaseService, STAHttpOptions} from '../_base.service';
 
 @Injectable({providedIn: 'root'})
-export class 会话查询Service extends STABaseService {
+export class SearchSessionService extends STABaseService {
   /**
    * 会话查询接口----根据分页参数获取会话列表
    *
-   * @request POST:/searchSession/getList
+   * @request POST:/searchSession/list
    */
-  getList(req: SearchSessionDto, options?: STAHttpOptions): Observable<BaseResponseListSaSession> {
-    return this.request('POST', `/searchSession/getList`, {
+  list1(req: SearchSessionDto, options?: STAHttpOptions): Observable<BaseResponseListSaSession> {
+    return this.request('POST', `/searchSession/list`, {
       body: req,
       ...options
     });

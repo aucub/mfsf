@@ -8,18 +8,18 @@
 
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import type {BaseResponseString} from '../models';
+import type {BaseResponseString, DisableAccountDto} from '../models';
 import {STABaseService, STAHttpOptions} from '../_base.service';
-import type {账号封禁DisableRequest, 账号封禁UntieDisableRequest} from './dtos';
+import type {DisableUntieDisableRequest} from './dtos';
 
 @Injectable({providedIn: 'root'})
-export class 账号封禁Service extends STABaseService {
+export class DisableService extends STABaseService {
   /**
    * 解封指定账号
    *
    * @request POST:/disable/untieDisable
    */
-  untieDisable(req: 账号封禁UntieDisableRequest, options?: STAHttpOptions): Observable<BaseResponseString> {
+  untieDisable(req: DisableUntieDisableRequest, options?: STAHttpOptions): Observable<BaseResponseString> {
     return this.request('POST', `/disable/untieDisable`, {
       params: req,
       ...options
@@ -31,9 +31,9 @@ export class 账号封禁Service extends STABaseService {
    *
    * @request POST:/disable/disable
    */
-  disable(req: 账号封禁DisableRequest, options?: STAHttpOptions): Observable<BaseResponseString> {
+  disable(req: DisableAccountDto, options?: STAHttpOptions): Observable<BaseResponseString> {
     return this.request('POST', `/disable/disable`, {
-      params: req,
+      body: req,
       ...options
     });
   }

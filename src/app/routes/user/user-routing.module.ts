@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { UserPageListComponent } from './page-list/page-list.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {UserListComponent} from './list/list.component';
 
 const routes: Routes = [
-
-  { path: 'pageList', component: UserPageListComponent }];
+  {path: 'list', component: UserListComponent}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

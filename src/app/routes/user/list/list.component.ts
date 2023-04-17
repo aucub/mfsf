@@ -1,22 +1,21 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {STChange, STColumn, STComponent, STData} from '@delon/abc/st';
 import {SFSchema} from '@delon/form';
 import {_HttpClient, ModalHelper} from '@delon/theme';
-import {BaseResponseListRole, Role} from '@sta';
-import {of} from 'rxjs';
+import {BaseResponseListRole, Role} from "@sta";
 
 @Component({
-  selector: 'app-user-page-list',
-  templateUrl: './page-list.component.html'
+  selector: 'app-user-list',
+  templateUrl: './list.component.html',
 })
-export class UserPageListComponent {
-  url = `/user/pageList`;
+export class UserListComponent implements OnInit {
+  url = `/user/list`;
   method = 'POST';
   reName = {pi: 'pageNum', ps: 'pageSize'};
   allInBody = true;
   params = {keyword: '', roleId: ''};
   resReName = {list: 'data.records'};
-  roles: Role[] = [{id: '', name: '', description: '', status: 0}];
+  roles: Role[] = [{id: '', name: '', description: '', deleted: 0}];
 
   change(e: STChange): void {
     console.log('change', e);
@@ -32,11 +31,16 @@ export class UserPageListComponent {
   };
   @ViewChild('st') private readonly st!: STComponent;
   columns: STColumn[] = [
-    { title: '编号', type: 'checkbox' },
-    { title: '用户名', index: 'username' },
-    { title: '昵称', index: 'nickname', render: 'nicknameTpl' },
-    { title: '上次登录时间', index: 'loginTime' },
-    { title: '备注', index: 'note', render: 'noteTpl' },
+    {title: '编号', type: 'checkbox'},
+    {title: '用户名', index: 'username'},
+    {title: '昵称', index: 'nickname', render: 'nicknameTpl'},
+    {title: '上次登录时间', index: 'loginTime'},
+    {title: '备注', index: 'note', render: 'noteTpl'},
+    {title: '创建者', index: 'creator'},
+    {title: '更新者', index: 'updater'},
+    {title: '注册时间', index: 'createTime'},
+    {title: '更新时间', index: 'lastUpdateTime'},
+    {title: '类型', index: 'type'},
     {
       title: '',
       buttons: [
@@ -67,16 +71,14 @@ export class UserPageListComponent {
     JSON.stringify(this.st.pureItem(i));
     this.updateEdit(i, false);
   }
-  protected readonly of = of;
-  protected readonly name = name;
+
+  constructor(private http: _HttpClient, private modal: ModalHelper) {
+  }
 
   add(): void {
     // this.modal
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
-  }
-
-  constructor(private http: _HttpClient, private modal: ModalHelper) {
   }
 
   selectRole(data: string): void {
@@ -97,4 +99,5 @@ export class UserPageListComponent {
   private updateEdit(i: STData, edit: boolean): void {
     this.st.setRow(i, {edit}, {refreshSchema: true});
   }
+
 }

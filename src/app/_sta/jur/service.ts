@@ -8,17 +8,17 @@
 
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import type {BaseResponseLinkedHashMapStringObject} from '../models';
+import type {BaseResponseLinkedHashMapStringListString} from '../models';
 import {STABaseService, STAHttpOptions} from '../_base.service';
 
 @Injectable({providedIn: 'root'})
-export class 权限认证Service extends STABaseService {
+export class JurService extends STABaseService {
   /**
    * 查询权限
    *
    * @request GET:/jur/getPermission
    */
-  getPermission(options?: STAHttpOptions): Observable<BaseResponseLinkedHashMapStringObject> {
+  getPermission(options?: STAHttpOptions): Observable<BaseResponseLinkedHashMapStringListString> {
     return this.request('GET', `/jur/getPermission`, {
       ...options
     });

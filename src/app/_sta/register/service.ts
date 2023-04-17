@@ -12,7 +12,7 @@ import type {BaseResponseString, UserRegisterDto} from '../models';
 import {STABaseService, STAHttpOptions} from '../_base.service';
 
 @Injectable({providedIn: 'root'})
-export class 用户注册Service extends STABaseService {
+export class RegisterService extends STABaseService {
   /**
    * 用户注册
    *
@@ -21,17 +21,6 @@ export class 用户注册Service extends STABaseService {
   user(req: UserRegisterDto, options?: STAHttpOptions): Observable<BaseResponseString> {
     return this.request('POST', `/register/user`, {
       body: req,
-      ...options
-    });
-  }
-
-  /**
-   * 获取公钥
-   *
-   * @request GET:/register/getPublicKey
-   */
-  getPublicKey1(options?: STAHttpOptions): Observable<BaseResponseString> {
-    return this.request('GET', `/register/getPublicKey`, {
       ...options
     });
   }

@@ -18,4 +18,4 @@ module.exports = {
   //   secure: false, // Ignore invalid SSL certificates
   //   changeOrigin: true
   // }
-};
+}
