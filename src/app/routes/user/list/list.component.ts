@@ -3,6 +3,7 @@ import {STChange, STColumn, STComponent, STData} from '@delon/abc/st';
 import {SFSchema} from '@delon/form';
 import {_HttpClient, ModalHelper} from '@delon/theme';
 import {BaseResponseListRole, Role} from "@sta";
+import {UserEditComponent} from "../edit/edit.component";
 
 @Component({
   selector: 'app-user-list',
@@ -60,12 +61,25 @@ export class UserListComponent implements OnInit {
           text: `Cancel`,
           iif: i => i.edit,
           click: i => this.updateEdit(i, false)
-        }
+        },
         //{ text: '查看', click: (item: any) => `/form/${item.id}` }
-        // { text: '编辑', type: 'static', component: FormEditComponent, click: 'reload' },
+        // { text: '编辑', type: 'static', component: UserEditComponent, click: 'reload' },
+        {
+          text: 'Edit',
+          icon: 'edit',
+          type: 'modal',
+          modal: {
+            component: UserEditComponent
+          },
+          click: (_record, modal) => console.log('')
+        }
       ]
     }
   ];
+
+  open(): void {
+    this.modal.createStatic(UserEditComponent, {record: 1}).subscribe(console.log);
+  }
 
   private submit(i: STData): void {
     JSON.stringify(this.st.pureItem(i));
