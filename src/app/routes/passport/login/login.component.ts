@@ -1,14 +1,14 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, Optional} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {StartupService} from '@core';
-import {ReuseTabService} from '@delon/abc/reuse-tab';
-import {DA_SERVICE_TOKEN, ITokenModel, ITokenService, SocialOpenType, SocialService} from '@delon/auth';
-import {_HttpClient, SettingsService} from '@delon/theme';
-import {environment} from '@env/environment';
-import {DoLoginRes} from '@sta';
-import {NzTabChangeEvent} from 'ng-zorro-antd/tabs';
-import {finalize} from 'rxjs';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, Optional } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { StartupService } from '@core';
+import { ReuseTabService } from '@delon/abc/reuse-tab';
+import { DA_SERVICE_TOKEN, ITokenModel, ITokenService, SocialOpenType, SocialService } from '@delon/auth';
+import { _HttpClient, SettingsService } from '@delon/theme';
+import { environment } from '@env/environment';
+import { DoLoginRes } from '@sta';
+import { NzTabChangeEvent } from 'ng-zorro-antd/tabs';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'passport-login',
@@ -105,8 +105,7 @@ export class UserLoginComponent implements OnDestroy {
         {
           //type: this.type,
           username: this.form.value.userName,
-          password: this.form.value.password,
-          isLastingCookie: true
+          password: this.form.value.password
         },
         null
         /*{

@@ -46,8 +46,10 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.record.id > 0)
-      this.http.get(`/user/getRoleListByUserId/${this.record.id}`).subscribe(res => (this.i = res));
+    //if (this.record.id > 0)
+      this.http.post(`/user/getRoleListByUserId`,{
+        userId:this.record.id
+      }).subscribe(res => (this.i = res));
   }
 
   save(value: any): void {
