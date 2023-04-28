@@ -2,12 +2,13 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {STChange, STColumn, STComponent, STData} from '@delon/abc/st';
 import {SFSchema} from '@delon/form';
 import {_HttpClient, ModalHelper} from '@delon/theme';
-import {BaseResponseListRole, Role} from "@sta";
-import {UserEditComponent} from "../edit/edit.component";
+import {BaseResponseListRole, Role} from '@sta';
+import {UserEditComponent} from '../edit/edit.component';
+import {UserUeditComponent} from '../uedit/uedit.component';
 
 @Component({
   selector: 'app-user-list',
-  templateUrl: './list.component.html',
+  templateUrl: './list.component.html'
 })
 export class UserListComponent implements OnInit {
   url = `/user/list`;
@@ -46,30 +47,21 @@ export class UserListComponent implements OnInit {
       title: '',
       buttons: [
         {
-          text: `Edit`,
-          iif: i => !i.edit,
-          click: i => this.updateEdit(i, true)
-        },
-        {
-          text: `Save`,
-          iif: i => i.edit,
-          click: i => {
-            this.submit(i);
-          }
-        },
-        {
-          text: `Cancel`,
-          iif: i => i.edit,
-          click: i => this.updateEdit(i, false)
+          text: `编辑`,
+          type: 'modal',
+          modal: {
+            component: UserUeditComponent
+          },
+          click: (_record, modal) => console.log('')
         },
         //{ text: '查看', click: (item: any) => `/form/${item.id}` }
         // { text: '编辑', type: 'static', component: UserEditComponent, click: 'reload' },
         {
-          text: 'Edit',
+          text: '角色',
           icon: 'edit',
           type: 'modal',
           modal: {
-            component: UserEditComponent
+            component: UserEditComponent,
           },
           click: (_record, modal) => console.log('')
         }
@@ -113,5 +105,4 @@ export class UserListComponent implements OnInit {
   private updateEdit(i: STData, edit: boolean): void {
     this.st.setRow(i, {edit}, {refreshSchema: true});
   }
-
 }

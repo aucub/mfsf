@@ -1,62 +1,73 @@
-import {Component, OnInit} from '@angular/core';
-import {SFSchema, SFUISchema} from '@delon/form';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {STColumn, STComponent, STData} from '@delon/abc/st';
+import {SFCheckboxWidgetSchema, SFSchema} from '@delon/form';
 import {_HttpClient} from '@delon/theme';
+import {BaseResponseListRole, Roleui} from '@sta/models';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {NzModalRef} from 'ng-zorro-antd/modal';
+import {delay, of} from 'rxjs';
 
 @Component({
-  selector: 'app-user-edit',
-  templateUrl: './edit.component.html',
+  selector: 'form-checkbox-simple',
+  template: `
+    <sf [schema]="schema" (formSubmit)="submit($event)"></sf
+    >
+    <st #st [data]="role" [columns]="columns"></st>`
 })
 export class UserEditComponent implements OnInit {
-  record: any = {};
-  i: any;
+  record: any;
+  i: Roleui[] = [];
+  role: STData[] = [];
   schema: SFSchema = {
     properties: {
-      no: {type: 'string', title: '编号'},
-      owner: {type: 'string', title: '姓名', maxLength: 15},
-      callNo: {type: 'number', title: '调用次数'},
-      href: {type: 'string', title: '链接', format: 'uri'},
-      description: {type: 'string', title: '描述', maxLength: 140},
-    },
-    required: ['owner', 'callNo', 'href', 'description'],
-  };
-  ui: SFUISchema = {
-    '*': {
-      spanLabelFixed: 100,
-      grid: {span: 12},
-    },
-    $no: {
-      widget: 'text'
-    },
-    $href: {
-      widget: 'string',
-    },
-    $description: {
-      widget: 'textarea',
-      grid: {span: 24},
-    },
+      async: {
+        type: 'string',
+        title: '角色',
+        ui: {
+          widget: 'checkbox',
+          asyncData: () => of(this.i).pipe(delay(200))
+        } as SFCheckboxWidgetSchema
+      }
+    }
   };
 
-  constructor(
-    private modal: NzModalRef,
-    private msgSrv: NzMessageService,
-    public http: _HttpClient,
-  ) {
+  @ViewChild('st', {static: true})
+  st!: STComponent;
+  columns: STColumn[] = [
+    {title: '角色', index: 'name'},
+    {title: '描述', index: 'description'}
+  ];
+
+  constructor(private modal: NzModalRef, private msgSrv: NzMessageService, public http: _HttpClient) {
   }
 
   ngOnInit(): void {
+    this.http.get<BaseResponseListRole>('/user/getRoleListByUserId?userId=' + this.record.id).subscribe(res => {
+      of(res.data)
+        .subscribe(re => (this.role = re));
+    });
+
     //if (this.record.id > 0)
-      this.http.post(`/user/getRoleListByUserId`,{
-        userId:this.record.id
-      }).subscribe(res => (this.i = res));
+    this.http.get<BaseResponseListRole>(`/role/list`).subscribe(res => {
+      res.data.forEach(obj => {
+        this.i.push(Object.assign({}, {
+          label: obj.name + (obj.description == null ? '' : ':' + obj.description),
+          value: obj.id
+        }));
+      });
+    });
   }
 
-  save(value: any): void {
-    this.http.post(`/user/${this.record.id}`, value).subscribe(res => {
-      this.msgSrv.success('保存成功');
-      this.modal.close(true);
-    });
+  submit(value: {}): void {
+    this.http
+      .post(`/user/saveAuthRole`, {
+        userId: this.record.id,
+        roleIds: value
+      })
+      .subscribe(() => {
+        this.msgSrv.success('保存成功');
+        this.modal.close(true);
+      });
   }
 
   close(): void {

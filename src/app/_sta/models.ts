@@ -106,15 +106,20 @@ export interface BaseResponseListRole {
   /** @format int32 */
   code?: number;
   message?: string;
-  data?: Role[];
+  data: Role[];
 }
 
 export interface Role {
   id?: string;
-  name?: string;
+  name: string;
   description?: string;
   /** @format int32 */
   deleted?: number;
+}
+
+export interface Roleui {
+  label?: string;
+  value?: string;
 }
 
 export interface JwtDto {
@@ -236,18 +241,5 @@ export interface PageListRes {
 export interface DoLoginRes {
   code: number;
   message: string;
-  data: {
-    tokenName: string;
-    tokenValue: string;
-    isLogin: boolean;
-    loginId: Record<string, unknown>;
-    loginType: string;
-    tokenTimeout: number;
-    sessionTimeout: number;
-    tokenSessionTimeout: number;
-    tokenActivityTimeout: number;
-    loginDevice: string;
-    tag: string;
-  };
+  data: string;
 }
-
