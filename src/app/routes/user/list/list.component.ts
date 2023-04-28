@@ -1,10 +1,12 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {STChange, STColumn, STComponent, STData} from '@delon/abc/st';
-import {SFSchema} from '@delon/form';
-import {_HttpClient, ModalHelper} from '@delon/theme';
-import {BaseResponseListRole, Role} from '@sta';
-import {UserEditComponent} from '../edit/edit.component';
-import {UserUeditComponent} from '../uedit/uedit.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { STChange, STColumn, STComponent, STData } from '@delon/abc/st';
+import { SFSchema } from '@delon/form';
+import { _HttpClient, ModalHelper } from '@delon/theme';
+import { BaseResponseListRole, Role } from '@sta';
+import { UserEditComponent } from '../edit/edit.component';
+import { UserUeditComponent } from '../uedit/uedit.component';
+import { UserAddComponent } from '../add/add.component';
+import { UserTokenComponent } from '../token/token.component';
 
 @Component({
   selector: 'app-user-list',
@@ -13,11 +15,11 @@ import {UserUeditComponent} from '../uedit/uedit.component';
 export class UserListComponent implements OnInit {
   url = `/user/list`;
   method = 'POST';
-  reName = {pi: 'pageNum', ps: 'pageSize'};
+  reName = { pi: 'pageNum', ps: 'pageSize' };
   allInBody = true;
-  params = {keyword: '', roleId: ''};
-  resReName = {list: 'data.records'};
-  roles: Role[] = [{id: '', name: '', description: '', deleted: 0}];
+  params = { keyword: '', roleId: '' };
+  resReName = { list: 'data.records' };
+  roles: Role[] = [{ id: '', name: '', description: '', deleted: 0 }];
 
   change(e: STChange): void {
     console.log('change', e);
@@ -33,16 +35,16 @@ export class UserListComponent implements OnInit {
   };
   @ViewChild('st') private readonly st!: STComponent;
   columns: STColumn[] = [
-    {title: '编号', type: 'checkbox'},
-    {title: '用户名', index: 'username'},
-    {title: '昵称', index: 'nickname', render: 'nicknameTpl'},
-    {title: '上次登录时间', index: 'loginTime'},
-    {title: '备注', index: 'note', render: 'noteTpl'},
-    {title: '创建者', index: 'creator'},
-    {title: '更新者', index: 'updater'},
-    {title: '注册时间', index: 'createTime'},
-    {title: '更新时间', index: 'lastUpdateTime'},
-    {title: '类型', index: 'type'},
+    { title: '编号', type: 'checkbox' },
+    { title: '用户名', index: 'username' },
+    { title: '昵称', index: 'nickname', render: 'nicknameTpl' },
+    { title: '上次登录时间', index: 'loginTime' },
+    { title: '备注', index: 'note', render: 'noteTpl' },
+    { title: '创建者', index: 'creator' },
+    { title: '更新者', index: 'updater' },
+    { title: '注册时间', index: 'createTime' },
+    { title: '更新时间', index: 'lastUpdateTime' },
+    { title: '类型', index: 'type' },
     {
       title: '',
       buttons: [
@@ -61,7 +63,21 @@ export class UserListComponent implements OnInit {
           icon: 'edit',
           type: 'modal',
           modal: {
-            component: UserEditComponent,
+            component: UserEditComponent
+          },
+          click: (_record, modal) => console.log('')
+        },
+        {
+          text: '删除',
+          icon: 'delete',
+          type: 'del',
+          click: _record => this.delete(_record.id)
+        },
+        {
+          text: 'token',
+          type: 'modal',
+          modal: {
+            component: UserTokenComponent
           },
           click: (_record, modal) => console.log('')
         }
@@ -70,7 +86,7 @@ export class UserListComponent implements OnInit {
   ];
 
   open(): void {
-    this.modal.createStatic(UserEditComponent, {record: 1}).subscribe(console.log);
+    this.modal.createStatic(UserEditComponent, { record: 1 }).subscribe(console.log);
   }
 
   private submit(i: STData): void {
@@ -78,18 +94,18 @@ export class UserListComponent implements OnInit {
     this.updateEdit(i, false);
   }
 
-  constructor(private http: _HttpClient, private modal: ModalHelper) {
-  }
+  constructor(private http: _HttpClient, private modal: ModalHelper) {}
 
   add(): void {
     // this.modal
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
+    this.modal.create(UserAddComponent, {}).subscribe(res => {});
   }
 
   selectRole(data: string): void {
     // @ts-ignore
-    this.params = {keyword: '', roleId: data};
+    this.params = { keyword: '', roleId: data };
     this.st.reload(this.params);
   }
 
@@ -102,7 +118,14 @@ export class UserListComponent implements OnInit {
     });
   }
 
+  delete(id: string): void {
+    this.http.get('/user/delete?id=' + id).subscribe(res => {
+      {
+      }
+    });
+  }
+
   private updateEdit(i: STData, edit: boolean): void {
-    this.st.setRow(i, {edit}, {refreshSchema: true});
+    this.st.setRow(i, { edit }, { refreshSchema: true });
   }
 }

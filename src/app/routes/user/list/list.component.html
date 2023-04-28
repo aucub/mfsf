@@ -5,6 +5,7 @@
 </page-header>
 <nz-card>
   <button nz-button (click)="st.export()">Export</button>
+  <button (click)="add()" nz-button nzType="primary">新建</button>
   <sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>
   <a [nzDropdownMenu]="menu" nz-dropdown>
     角色
@@ -25,7 +26,7 @@
   >
     <ng-template st-row="nicknameTpl" let-item let-index="index">
       <input (ngModelChange)="st.setRow(index, { nickname: $event })" *ngIf="item.edit" [ngModel]="item.nickname"
-             nz-input/>
+              nz-input/>
       <ng-container *ngIf="!item.edit">{{ item.nickname }}</ng-container>
     </ng-template>
     <ng-template st-row="noteTpl" let-item let-index="index">
