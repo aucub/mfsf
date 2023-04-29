@@ -1,12 +1,12 @@
 {
   "app": {
-    "name": "Alain",
-    "description": "Ng-zorro admin panel front-end framework"
+    "name": "mfsf",
+    "description": ""
   },
   "user": {
-    "name": "Admin",
+    "name": "",
     "avatar": "./assets/tmp/img/avatar.jpg",
-    "email": "cipchk@qq.com"
+    "email": ""
   },
   "menu": [
     {
