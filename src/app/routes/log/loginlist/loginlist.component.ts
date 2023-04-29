@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { STColumn, STComponent } from '@delon/abc/st';
+import { STChange, STColumn, STComponent } from '@delon/abc/st';
 import { SFSchema } from '@delon/form';
 import { ModalHelper, _HttpClient } from '@delon/theme';
 
@@ -13,7 +13,7 @@ export class LogLoginlistComponent implements OnInit {
   reName = { pi: 'pageNum', ps: 'pageSize' };
   allInBody = true;
   params = { keyword: '' };
-  resReName = { list: 'data.records' };
+  resReName = { list: 'data.records', total: 'data.total' };
   searchSchema: SFSchema = {
     properties: {
       keyword: {
@@ -43,5 +43,8 @@ export class LogLoginlistComponent implements OnInit {
     // this.modal
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
+  }
+  change(e: STChange): void {
+    console.log('change', e);
   }
 }

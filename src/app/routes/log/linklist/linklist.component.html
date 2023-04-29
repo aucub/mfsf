@@ -6,5 +6,5 @@
 <nz-card>
   <sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>
   <st #st [data]="url" [req]="{ method: method, reName: reName, allInBody: allInBody, params: params }"
-  [res]="{ reName: resReName }" [columns]="columns"></st>
+  [res]="{ reName: resReName }" [columns]="columns" (change)="change($event)"></st>
 </nz-card>

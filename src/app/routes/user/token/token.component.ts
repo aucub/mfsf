@@ -1,15 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { SFSchema, SFUISchema } from '@delon/form';
-import { _HttpClient } from '@delon/theme';
+import { SFSchema, SFTextWidgetSchema, SFUISchema } from '@delon/form';
+import { ModalHelper, _HttpClient } from '@delon/theme';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-user-token',
-  template: ` <sf [schema]="schema" (formSubmit)="save($event)"></sf>`
+  template: ` <sf [schema]="schema" (formSubmit)="save($event)"></sf>
+    <nz-card>
+      <div nz-body>
+        <p>{{ token }}</p>
+      </div>
+    </nz-card>`
 })
 export class UserTokenComponent implements OnInit {
   record: any;
+  token: string = '';
   schema: SFSchema = {
     properties: {
       expiresAt: { type: 'string', title: '编号', format: 'date-time' }
@@ -26,7 +32,7 @@ export class UserTokenComponent implements OnInit {
     }
   };
 
-  constructor(private modal: NzModalRef, private msgSrv: NzMessageService, public http: _HttpClient) {}
+  constructor(private modal: NzModalRef, private modalHelper: ModalHelper, private msgSrv: NzMessageService, public http: _HttpClient) {}
 
   ngOnInit(): void {}
 
@@ -37,8 +43,9 @@ export class UserTokenComponent implements OnInit {
         expiresAt: value.expiresAt
       })
       .subscribe(res => {
+        this.token = res.data;
         this.msgSrv.success('保存成功');
-        this.modal.close(true);
+        //this.modal.close(true);
       });
   }
 

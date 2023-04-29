@@ -7,6 +7,7 @@ import { UserEditComponent } from '../edit/edit.component';
 import { UserUeditComponent } from '../uedit/uedit.component';
 import { UserAddComponent } from '../add/add.component';
 import { UserTokenComponent } from '../token/token.component';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-user-list',
@@ -18,7 +19,7 @@ export class UserListComponent implements OnInit {
   reName = { pi: 'pageNum', ps: 'pageSize' };
   allInBody = true;
   params = { keyword: '', roleId: '' };
-  resReName = { list: 'data.records' };
+  resReName = { list: 'data.records', total: 'data.total' };
   roles: Role[] = [{ id: '', name: '', description: '', deleted: 0 }];
 
   change(e: STChange): void {
@@ -94,7 +95,7 @@ export class UserListComponent implements OnInit {
     this.updateEdit(i, false);
   }
 
-  constructor(private http: _HttpClient, private modal: ModalHelper) {}
+  constructor(private http: _HttpClient, private msgSrv: NzMessageService, private modal: ModalHelper) {}
 
   add(): void {
     // this.modal
@@ -120,8 +121,8 @@ export class UserListComponent implements OnInit {
 
   delete(id: string): void {
     this.http.get('/user/delete?id=' + id).subscribe(res => {
-      {
-      }
+      this.msgSrv.success(res.data);
+      this.st.reload;
     });
   }
 
