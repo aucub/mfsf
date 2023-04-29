@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { SFSchema, SFUISchema } from '@delon/form';
-import { _HttpClient } from '@delon/theme';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzModalRef } from 'ng-zorro-antd/modal';
+import {Component, OnInit} from '@angular/core';
+import {SFSchema, SFUISchema} from '@delon/form';
+import {_HttpClient} from '@delon/theme';
+import {NzMessageService} from 'ng-zorro-antd/message';
+import {NzModalRef} from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-user-add',
@@ -11,17 +11,17 @@ import { NzModalRef } from 'ng-zorro-antd/modal';
 export class UserAddComponent implements OnInit {
   schema: SFSchema = {
     properties: {
-      username: { type: 'string', title: '用户名' },
-      password: { type: 'string', title: '密码', maxLength: 15 },
-      nickname: { type: 'string', title: '昵称' },
-      note: { type: 'string', title: '备注' }
+      username: {type: 'string', title: '用户名'},
+      password: {type: 'string', title: '密码', maxLength: 15},
+      nickname: {type: 'string', title: '昵称'},
+      note: {type: 'string', title: '备注'}
     },
     required: ['username', 'password', 'nickname']
   };
   ui: SFUISchema = {
     '*': {
       spanLabelFixed: 100,
-      grid: { span: 12 }
+      grid: {span: 12}
     },
     $username: {
       widget: 'string'
@@ -37,8 +37,12 @@ export class UserAddComponent implements OnInit {
     }
   };
 
-  constructor(private modal: NzModalRef, private msgSrv: NzMessageService, public http: _HttpClient) {}
-  ngOnInit(): void {}
+  constructor(private modal: NzModalRef, private msgSrv: NzMessageService, public http: _HttpClient) {
+  }
+
+  ngOnInit(): void {
+  }
+
   save(value: any): void {
     this.http.post(`/user/save`, value).subscribe(res => {
       this.msgSrv.success('保存成功');

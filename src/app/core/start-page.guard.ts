@@ -1,7 +1,7 @@
-import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
-import { MenuService } from '@delon/theme';
-import { Observable } from 'rxjs';
+import {inject} from '@angular/core';
+import {CanActivateFn, Router} from '@angular/router';
+import {MenuService} from '@delon/theme';
+import {Observable} from 'rxjs';
 
 /**
  * Dynamically load the start page

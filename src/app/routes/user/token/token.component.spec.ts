@@ -1,5 +1,5 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { UserTokenComponent } from './token.component';
+import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
+import {UserTokenComponent} from './token.component';
 
 describe('UserTokenComponent', () => {
   let component: UserTokenComponent;
@@ -7,9 +7,9 @@ describe('UserTokenComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserTokenComponent ]
+      declarations: [UserTokenComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { STColumn, STComponent, STData } from '@delon/abc/st';
-import { SFCheckboxWidgetSchema, SFSchema } from '@delon/form';
-import { _HttpClient } from '@delon/theme';
-import { BaseResponseListRole, Roleui } from '@sta/models';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzModalRef } from 'ng-zorro-antd/modal';
-import { delay, of } from 'rxjs';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {STColumn, STComponent, STData} from '@delon/abc/st';
+import {SFCheckboxWidgetSchema, SFSchema} from '@delon/form';
+import {_HttpClient} from '@delon/theme';
+import {BaseResponseListRole, Roleui} from '@sta/models';
+import {NzMessageService} from 'ng-zorro-antd/message';
+import {NzModalRef} from 'ng-zorro-antd/modal';
+import {delay, of} from 'rxjs';
 
 @Component({
   selector: 'form-checkbox-simple',
@@ -29,14 +29,15 @@ export class UserEditComponent implements OnInit {
     }
   };
 
-  @ViewChild('st', { static: true })
+  @ViewChild('st', {static: true})
   st!: STComponent;
   columns: STColumn[] = [
-    { title: '角色', index: 'name' },
-    { title: '描述', index: 'description' }
+    {title: '角色', index: 'name'},
+    {title: '描述', index: 'description'}
   ];
 
-  constructor(private modal: NzModalRef, private msgSrv: NzMessageService, public http: _HttpClient) {}
+  constructor(private modal: NzModalRef, private msgSrv: NzMessageService, public http: _HttpClient) {
+  }
 
   ngOnInit(): void {
     this.http.get<BaseResponseListRole>('/user/getRoleListByUserId?userId=' + this.record.id).subscribe(res => {

@@ -1,5 +1,5 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { LogOnlinelistComponent } from './onlinelist.component';
+import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
+import {LogOnlinelistComponent} from './onlinelist.component';
 
 describe('LogOnlinelistComponent', () => {
   let component: LogOnlinelistComponent;
@@ -7,9 +7,9 @@ describe('LogOnlinelistComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LogOnlinelistComponent ]
+      declarations: [LogOnlinelistComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

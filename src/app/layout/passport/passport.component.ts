@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
+import {Component, Inject, OnInit} from '@angular/core';
+import {DA_SERVICE_TOKEN, ITokenService} from '@delon/auth';
 
 @Component({
   selector: 'layout-passport',
@@ -22,7 +22,8 @@ export class LayoutPassportComponent implements OnInit {
     }
   ];
 
-  constructor(@Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService) {}
+  constructor(@Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService) {
+  }
 
   ngOnInit(): void {
     this.tokenService.clear();

@@ -2,7 +2,7 @@ const prettierConfig = require('./.prettierrc.js');
 
 module.exports = {
   root: true,
-  parserOptions: { ecmaVersion: 2021 },
+  parserOptions: {ecmaVersion: 2021},
   overrides: [
     {
       files: ['*.ts'],
@@ -90,7 +90,7 @@ module.exports = {
         'import/order': [
           'error',
           {
-            alphabetize: { order: 'asc', caseInsensitive: false },
+            alphabetize: {order: 'asc', caseInsensitive: false},
             'newlines-between': 'always',
             groups: ['external', 'internal', ['parent', 'sibling', 'index']],
             pathGroups: [],
@@ -119,7 +119,7 @@ module.exports = {
       excludedFiles: ['*inline-template-*.component.html'],
       extends: ['plugin:prettier/recommended'],
       rules: {
-        'prettier/prettier': ['error', { parser: 'angular' }],
+        'prettier/prettier': ['error', {parser: 'angular'}],
         '@angular-eslint/template/eqeqeq': 'off'
       }
     }

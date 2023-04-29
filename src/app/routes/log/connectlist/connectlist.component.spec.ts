@@ -1,5 +1,5 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { LogConnectlistComponent } from './connectlist.component';
+import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
+import {LogConnectlistComponent} from './connectlist.component';
 
 describe('LogConnectlistComponent', () => {
   let component: LogConnectlistComponent;
@@ -7,9 +7,9 @@ describe('LogConnectlistComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LogConnectlistComponent ]
+      declarations: [LogConnectlistComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

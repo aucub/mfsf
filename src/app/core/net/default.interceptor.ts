@@ -7,13 +7,13 @@ import {
   HttpRequest,
   HttpResponseBase
 } from '@angular/common/http';
-import { Injectable, Injector } from '@angular/core';
-import { Router } from '@angular/router';
-import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
-import { ALAIN_I18N_TOKEN, IGNORE_BASE_URL, _HttpClient, CUSTOM_ERROR, RAW_BODY } from '@delon/theme';
-import { environment } from '@env/environment';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { BehaviorSubject, Observable, of, throwError, catchError, filter, mergeMap, switchMap, take } from 'rxjs';
+import {Injectable, Injector} from '@angular/core';
+import {Router} from '@angular/router';
+import {DA_SERVICE_TOKEN, ITokenService} from '@delon/auth';
+import {ALAIN_I18N_TOKEN, IGNORE_BASE_URL, _HttpClient, CUSTOM_ERROR, RAW_BODY} from '@delon/theme';
+import {environment} from '@env/environment';
+import {NzNotificationService} from 'ng-zorro-antd/notification';
+import {BehaviorSubject, Observable, of, throwError, catchError, filter, mergeMap, switchMap, take} from 'rxjs';
 
 const CODEMESSAGE: { [key: number]: string } = {
   200: '服务器成功返回请求的数据。',
@@ -61,6 +61,28 @@ export class DefaultInterceptor implements HttpInterceptor {
     return this.injector.get(_HttpClient);
   }
 
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    // 统一加上服务端前缀
+    let url = req.url;
+    if (!req.context.get(IGNORE_BASE_URL) && !url.startsWith('https://') && !url.startsWith('http://')) {
+      const {baseUrl} = environment.api;
+      url = baseUrl + (baseUrl.endsWith('/') && url.startsWith('/') ? url.substring(1) : url);
+    }
+
+    const newReq = req.clone({url, setHeaders: this.getAdditionalHeaders(req.headers)});
+    return next.handle(newReq).pipe(
+      mergeMap(ev => {
+        // 允许统一对请求错误处理
+        if (ev instanceof HttpResponseBase) {
+          return this.handleData(ev, newReq, next);
+        }
+        // 若一切都正常，则后续操作
+        return of(ev);
+      })
+      // catchError((err: HttpErrorResponse) => this.handleData(err, newReq, next))
+    );
+  }
+
   private goTo(url: string): void {
     setTimeout(() => this.injector.get(Router).navigateByUrl(url));
   }
@@ -74,15 +96,15 @@ export class DefaultInterceptor implements HttpInterceptor {
     this.notification.error(`请求错误 ${ev.status}: ${ev.url}`, errortext);
   }
 
+  // #region 刷新Token方式一：使用 401 重新刷新 Token
+
   /**
    * 刷新 Token 请求
    */
   private refreshTokenRequest(): Observable<any> {
     const model = this.tokenSrv.get();
-    return this.http.post(`/api/auth/refresh`, null, null, { headers: { refresh_token: model?.['refresh_token'] || '' } });
+    return this.http.post(`/api/auth/refresh`, null, null, {headers: {refresh_token: model?.['refresh_token'] || ''}});
   }
-
-  // #region 刷新Token方式一：使用 401 重新刷新 Token
 
   private tryRefreshToken(ev: HttpResponseBase, req: HttpRequest<any>, next: HttpHandler): Observable<any> {
     // 1、若请求为刷新Token请求，表示来自刷新Token可以直接跳转登录页
@@ -120,6 +142,10 @@ export class DefaultInterceptor implements HttpInterceptor {
     );
   }
 
+  // #endregion
+
+  // #region 刷新Token方式二：使用 `@delon/auth` 的 `refresh` 接口
+
   /**
    * 重新附加新 Token 信息
    *
@@ -136,8 +162,6 @@ export class DefaultInterceptor implements HttpInterceptor {
   }
 
   // #endregion
-
-  // #region 刷新Token方式二：使用 `@delon/auth` 的 `refresh` 接口
 
   private buildAuthRefresh(): void {
     if (!this.refreshTokenEnabled) {
@@ -162,8 +186,6 @@ export class DefaultInterceptor implements HttpInterceptor {
         error: () => this.toLogin()
       });
   }
-
-  // #endregion
 
   private toLogin(): void {
     this.notification.error(`未登录或登录已过期，请重新登录。`, ``);
@@ -235,27 +257,5 @@ export class DefaultInterceptor implements HttpInterceptor {
     }
 
     return res;
-  }
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // 统一加上服务端前缀
-    let url = req.url;
-    if (!req.context.get(IGNORE_BASE_URL) && !url.startsWith('https://') && !url.startsWith('http://')) {
-      const { baseUrl } = environment.api;
-      url = baseUrl + (baseUrl.endsWith('/') && url.startsWith('/') ? url.substring(1) : url);
-    }
-
-    const newReq = req.clone({ url, setHeaders: this.getAdditionalHeaders(req.headers) });
-    return next.handle(newReq).pipe(
-      mergeMap(ev => {
-        // 允许统一对请求错误处理
-        if (ev instanceof HttpResponseBase) {
-          return this.handleData(ev, newReq, next);
-        }
-        // 若一切都正常，则后续操作
-        return of(ev);
-      })
-      // catchError((err: HttpErrorResponse) => this.handleData(err, newReq, next))
-    );
   }
 }

@@ -1,5 +1,5 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { LogLinklistComponent } from './linklist.component';
+import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
+import {LogLinklistComponent} from './linklist.component';
 
 describe('LogLinklistComponent', () => {
   let component: LogLinklistComponent;
@@ -7,9 +7,9 @@ describe('LogLinklistComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LogLinklistComponent ]
+      declarations: [LogLinklistComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

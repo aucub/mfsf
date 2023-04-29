@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { SettingsService, User } from '@delon/theme';
-import { LayoutDefaultOptions } from '@delon/theme/layout-default';
-import { environment } from '@env/environment';
+import {Component} from '@angular/core';
+import {SettingsService, User} from '@delon/theme';
+import {LayoutDefaultOptions} from '@delon/theme/layout-default';
+import {environment} from '@env/environment';
 
 @Component({
   selector: 'layout-basic',
@@ -74,9 +74,11 @@ export class LayoutBasicComponent {
   };
   searchToggleStatus = false;
   showSettingDrawer = !environment.production;
+
+  constructor(private settings: SettingsService) {
+  }
+
   get user(): User {
     return this.settings.user;
   }
-
-  constructor(private settings: SettingsService) {}
 }

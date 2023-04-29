@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ExceptionType } from '@delon/abc/exception';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {ExceptionType} from '@delon/abc/exception';
 
 @Component({
   selector: 'app-exception',
@@ -8,9 +8,10 @@ import { ExceptionType } from '@delon/abc/exception';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExceptionComponent {
+  constructor(private route: ActivatedRoute) {
+  }
+
   get type(): ExceptionType {
     return this.route.snapshot.data['type'];
   }
-
-  constructor(private route: ActivatedRoute) {}
 }

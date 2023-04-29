@@ -27,6 +27,13 @@ export class UserLoginComponent implements OnDestroy {
   });
 
   // #region fields
+  error = '';
+  type = 0;
+  loading = false;
+  count = 0;
+
+  // #region get captcha
+  interval$: any;
 
   constructor(
     private fb: FormBuilder,
@@ -40,27 +47,20 @@ export class UserLoginComponent implements OnDestroy {
     private startupSrv: StartupService,
     private http: _HttpClient,
     private cdr: ChangeDetectorRef
-  ) {}
-  error = '';
-  type = 0;
-  loading = false;
-
-  // #region get captcha
-
-  count = 0;
-  interval$: any;
+  ) {
+  }
 
   // #endregion
 
-  switch({ index }: NzTabChangeEvent): void {
+  switch({index}: NzTabChangeEvent): void {
     this.type = index!;
   }
 
   getCaptcha(): void {
     const mobile = this.form.controls.mobile;
     if (mobile.invalid) {
-      mobile.markAsDirty({ onlySelf: true });
-      mobile.updateValueAndValidity({ onlySelf: true });
+      mobile.markAsDirty({onlySelf: true});
+      mobile.updateValueAndValidity({onlySelf: true});
       return;
     }
     this.count = 59;
@@ -76,7 +76,7 @@ export class UserLoginComponent implements OnDestroy {
   submit(): void {
     this.error = '';
     if (this.type === 0) {
-      const { userName, password } = this.form.controls;
+      const {userName, password} = this.form.controls;
       userName.markAsDirty();
       userName.updateValueAndValidity();
       password.markAsDirty();
@@ -85,7 +85,7 @@ export class UserLoginComponent implements OnDestroy {
         return;
       }
     } else {
-      const { mobile, captcha } = this.form.controls;
+      const {mobile, captcha} = this.form.controls;
       mobile.markAsDirty();
       mobile.updateValueAndValidity();
       captcha.markAsDirty();

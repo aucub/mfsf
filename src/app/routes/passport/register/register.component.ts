@@ -1,12 +1,12 @@
-import { HttpContext } from '@angular/common/http';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ALLOW_ANONYMOUS } from '@delon/auth';
-import { _HttpClient } from '@delon/theme';
-import { MatchControl } from '@delon/util/form';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { finalize } from 'rxjs';
+import {HttpContext} from '@angular/common/http';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
+import {AbstractControl, FormBuilder, FormControl, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {ALLOW_ANONYMOUS} from '@delon/auth';
+import {_HttpClient} from '@delon/theme';
+import {MatchControl} from '@delon/util/form';
+import {NzSafeAny} from 'ng-zorro-antd/core/types';
+import {finalize} from 'rxjs';
 
 @Component({
   selector: 'passport-register',
@@ -15,10 +15,6 @@ import { finalize } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserRegisterComponent implements OnDestroy {
-  constructor(private fb: FormBuilder, private router: Router, private http: _HttpClient, private cdr: ChangeDetectorRef) {}
-
-  // #region fields
-
   form = this.fb.nonNullable.group(
     {
       mail: ['', [Validators.required, Validators.email]],
@@ -32,6 +28,8 @@ export class UserRegisterComponent implements OnDestroy {
       validators: MatchControl('password', 'confirm')
     }
   );
+
+  // #region fields
   error = '';
   type = 0;
   loading = false;
@@ -43,13 +41,15 @@ export class UserRegisterComponent implements OnDestroy {
     pass: 'normal',
     pool: 'exception'
   };
+  count = 0;
 
   // #endregion
 
   // #region get captcha
-
-  count = 0;
   interval$: NzSafeAny;
+
+  constructor(private fb: FormBuilder, private router: Router, private http: _HttpClient, private cdr: ChangeDetectorRef) {
+  }
 
   static checkPassword(control: FormControl): NzSafeAny {
     if (!control) {
@@ -72,10 +72,10 @@ export class UserRegisterComponent implements OnDestroy {
   }
 
   getCaptcha(): void {
-    const { mobile } = this.form.controls;
+    const {mobile} = this.form.controls;
     if (mobile.invalid) {
-      mobile.markAsDirty({ onlySelf: true });
-      mobile.updateValueAndValidity({ onlySelf: true });
+      mobile.markAsDirty({onlySelf: true});
+      mobile.updateValueAndValidity({onlySelf: true});
       return;
     }
     this.count = 59;
@@ -116,7 +116,7 @@ export class UserRegisterComponent implements OnDestroy {
         })
       )
       .subscribe(() => {
-        this.router.navigate(['passport', 'register-result'], { queryParams: { email: data.mail } });
+        this.router.navigate(['passport', 'register-result'], {queryParams: {email: data.mail}});
       });
   }
 

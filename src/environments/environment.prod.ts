@@ -1,4 +1,4 @@
-import { Environment } from '@delon/theme';
+import {Environment} from '@delon/theme';
 
 export const environment = {
   production: true,

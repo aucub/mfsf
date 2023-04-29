@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
 // import { STWidgetRegistry } from '@delon/abc/st';
-import { SharedModule } from '../shared.module';
+import {SharedModule} from '../shared.module';
 
 export const STWIDGET_COMPONENTS = [];
 

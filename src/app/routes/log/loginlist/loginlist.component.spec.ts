@@ -1,5 +1,5 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { LogLoginlistComponent } from './loginlist.component';
+import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
+import {LogLoginlistComponent} from './loginlist.component';
 
 describe('LogLoginlistComponent', () => {
   let component: LogLoginlistComponent;
@@ -7,9 +7,9 @@ describe('LogLoginlistComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LogLoginlistComponent ]
+      declarations: [LogLoginlistComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -39,10 +39,10 @@ const LANG = {
 };
 registerLocaleData(LANG.ng, LANG.abbr);
 const LANG_PROVIDES = [
-  { provide: LOCALE_ID, useValue: LANG.abbr },
-  { provide: NZ_I18N, useValue: LANG.zorro },
-  { provide: NZ_DATE_LOCALE, useValue: LANG.date },
-  { provide: DELON_LOCALE, useValue: LANG.delon }
+  {provide: LOCALE_ID, useValue: LANG.abbr},
+  {provide: NZ_I18N, useValue: LANG.zorro},
+  {provide: NZ_DATE_LOCALE, useValue: LANG.date},
+  {provide: DELON_LOCALE, useValue: LANG.delon}
 ];
 // #endregion
 const FORM_MODULES = [JsonSchemaModule];
@@ -55,10 +55,12 @@ const INTERCEPTOR_PROVIDES = [
 
 // #region global third module
 const GLOBAL_THIRD_MODULES: Array<Type<void>> = [];
+
 // #endregion
 export function StartupServiceFactory(startupService: StartupService): () => Observable<void> {
   return () => startupService.load();
 }
+
 const APPINIT_PROVIDES = [
   StartupService,
   {
@@ -68,6 +70,7 @@ const APPINIT_PROVIDES = [
     multi: true
   }
 ];
+
 // #endregion
 
 @NgModule({
@@ -96,4 +99,5 @@ const APPINIT_PROVIDES = [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

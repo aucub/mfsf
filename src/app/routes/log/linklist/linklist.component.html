@@ -4,7 +4,8 @@
   </ng-template>
 </page-header>
 <nz-card>
-  <sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>
-  <st #st [data]="url" [req]="{ method: method, reName: reName, allInBody: allInBody, params: params }"
-  [res]="{ reName: resReName }" [columns]="columns" (change)="change($event)"></st>
+  <sf (formReset)="st.reset($event)" (formSubmit)="st.reset($event)" [schema]="searchSchema" mode="search"></sf>
+  <st #st (change)="change($event)" [columns]="columns"
+      [data]="url" [req]="{ method: method, reName: reName, allInBody: allInBody, params: params }"
+      [res]="{ reName: resReName }"></st>
 </nz-card>

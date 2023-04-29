@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { STColumn, STComponent } from '@delon/abc/st';
-import { SFSchema } from '@delon/form';
-import { ModalHelper, _HttpClient } from '@delon/theme';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {STColumn, STComponent} from '@delon/abc/st';
+import {SFSchema} from '@delon/form';
+import {ModalHelper, _HttpClient} from '@delon/theme';
 
 @Component({
   selector: 'app-log-connectlist',
@@ -10,7 +10,7 @@ import { ModalHelper, _HttpClient } from '@delon/theme';
 export class LogConnectlistComponent implements OnInit {
   url = `/user/connectList`;
   method = 'GET';
-  resReName = { list: 'data.records' };
+  resReName = {list: 'data.records'};
   searchSchema: SFSchema = {
     properties: {
       keyword: {
@@ -19,17 +19,16 @@ export class LogConnectlistComponent implements OnInit {
       }
     }
   };
-  @ViewChild('st') private readonly st!: STComponent;
   columns: STColumn[] = [
-    { title: '用户名', index: 'username' },
-    { title: '昵称', index: 'nickname' },
-    { title: '上次登录时间', index: 'loginTime' },
-    { title: '备注', index: 'note' },
-    { title: '创建者', index: 'creator' },
-    { title: '更新者', index: 'updater' },
-    { title: '注册时间', index: 'createTime' },
-    { title: '更新时间', index: 'lastUpdateTime' },
-    { title: '类型', index: 'type' },
+    {title: '用户名', index: 'username'},
+    {title: '昵称', index: 'nickname'},
+    {title: '上次登录时间', index: 'loginTime'},
+    {title: '备注', index: 'note'},
+    {title: '创建者', index: 'creator'},
+    {title: '更新者', index: 'updater'},
+    {title: '注册时间', index: 'createTime'},
+    {title: '更新时间', index: 'lastUpdateTime'},
+    {title: '类型', index: 'type'},
     {
       title: '',
       buttons: [
@@ -38,10 +37,13 @@ export class LogConnectlistComponent implements OnInit {
       ]
     }
   ];
+  @ViewChild('st') private readonly st!: STComponent;
 
-  constructor(private http: _HttpClient, private modal: ModalHelper) {}
+  constructor(private http: _HttpClient, private modal: ModalHelper) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   add(): void {
     // this.modal

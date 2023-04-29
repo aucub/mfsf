@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { SFSchema, SFTextWidgetSchema, SFUISchema } from '@delon/form';
-import { ModalHelper, _HttpClient } from '@delon/theme';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzModalRef } from 'ng-zorro-antd/modal';
+import {Component, OnInit} from '@angular/core';
+import {SFSchema, SFTextWidgetSchema, SFUISchema} from '@delon/form';
+import {ModalHelper, _HttpClient} from '@delon/theme';
+import {NzMessageService} from 'ng-zorro-antd/message';
+import {NzModalRef} from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-user-token',
@@ -18,23 +18,25 @@ export class UserTokenComponent implements OnInit {
   token: string = '';
   schema: SFSchema = {
     properties: {
-      expiresAt: { type: 'string', title: '编号', format: 'date-time' }
+      expiresAt: {type: 'string', title: '编号', format: 'date-time'}
     },
     required: ['expiresAt']
   };
   ui: SFUISchema = {
     '*': {
       spanLabelFixed: 100,
-      grid: { span: 12 }
+      grid: {span: 12}
     },
     $expiresAt: {
       widget: 'date-time'
     }
   };
 
-  constructor(private modal: NzModalRef, private modalHelper: ModalHelper, private msgSrv: NzMessageService, public http: _HttpClient) {}
+  constructor(private modal: NzModalRef, private modalHelper: ModalHelper, private msgSrv: NzMessageService, public http: _HttpClient) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   save(value: any): void {
     this.http

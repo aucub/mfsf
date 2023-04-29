@@ -1,13 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { STChange, STColumn, STComponent, STData } from '@delon/abc/st';
-import { SFSchema } from '@delon/form';
-import { _HttpClient, ModalHelper } from '@delon/theme';
-import { BaseResponseListRole, Role } from '@sta';
-import { UserEditComponent } from '../edit/edit.component';
-import { UserUeditComponent } from '../uedit/uedit.component';
-import { UserAddComponent } from '../add/add.component';
-import { UserTokenComponent } from '../token/token.component';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {STChange, STColumn, STComponent, STData} from '@delon/abc/st';
+import {SFSchema} from '@delon/form';
+import {_HttpClient, ModalHelper} from '@delon/theme';
+import {BaseResponseListRole, Role} from '@sta';
+import {UserEditComponent} from '../edit/edit.component';
+import {UserUeditComponent} from '../uedit/uedit.component';
+import {UserAddComponent} from '../add/add.component';
+import {UserTokenComponent} from '../token/token.component';
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-user-list',
@@ -16,16 +16,11 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 export class UserListComponent implements OnInit {
   url = `/user/list`;
   method = 'POST';
-  reName = { pi: 'pageNum', ps: 'pageSize' };
+  reName = {pi: 'pageNum', ps: 'pageSize'};
   allInBody = true;
-  params = { keyword: '', roleId: '' };
-  resReName = { list: 'data.records', total: 'data.total' };
-  roles: Role[] = [{ id: '', name: '', description: '', deleted: 0 }];
-
-  change(e: STChange): void {
-    console.log('change', e);
-  }
-
+  params = {keyword: '', roleId: ''};
+  resReName = {list: 'data.records', total: 'data.total'};
+  roles: Role[] = [{id: '', name: '', description: '', deleted: 0}];
   searchSchema: SFSchema = {
     properties: {
       keyword: {
@@ -34,18 +29,17 @@ export class UserListComponent implements OnInit {
       }
     }
   };
-  @ViewChild('st') private readonly st!: STComponent;
   columns: STColumn[] = [
-    { title: '编号', type: 'checkbox' },
-    { title: '用户名', index: 'username' },
-    { title: '昵称', index: 'nickname', render: 'nicknameTpl' },
-    { title: '上次登录时间', index: 'loginTime' },
-    { title: '备注', index: 'note', render: 'noteTpl' },
-    { title: '创建者', index: 'creator' },
-    { title: '更新者', index: 'updater' },
-    { title: '注册时间', index: 'createTime' },
-    { title: '更新时间', index: 'lastUpdateTime' },
-    { title: '类型', index: 'type' },
+    {title: '编号', type: 'checkbox'},
+    {title: '用户名', index: 'username'},
+    {title: '昵称', index: 'nickname', render: 'nicknameTpl'},
+    {title: '上次登录时间', index: 'loginTime'},
+    {title: '备注', index: 'note', render: 'noteTpl'},
+    {title: '创建者', index: 'creator'},
+    {title: '更新者', index: 'updater'},
+    {title: '注册时间', index: 'createTime'},
+    {title: '更新时间', index: 'lastUpdateTime'},
+    {title: '类型', index: 'type'},
     {
       title: '',
       buttons: [
@@ -85,28 +79,30 @@ export class UserListComponent implements OnInit {
       ]
     }
   ];
+  @ViewChild('st') private readonly st!: STComponent;
+
+  constructor(private http: _HttpClient, private msgSrv: NzMessageService, private modal: ModalHelper) {
+  }
+
+  change(e: STChange): void {
+    console.log('change', e);
+  }
 
   open(): void {
-    this.modal.createStatic(UserEditComponent, { record: 1 }).subscribe(console.log);
+    this.modal.createStatic(UserEditComponent, {record: 1}).subscribe(console.log);
   }
-
-  private submit(i: STData): void {
-    JSON.stringify(this.st.pureItem(i));
-    this.updateEdit(i, false);
-  }
-
-  constructor(private http: _HttpClient, private msgSrv: NzMessageService, private modal: ModalHelper) {}
 
   add(): void {
     // this.modal
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
-    this.modal.create(UserAddComponent, {}).subscribe(res => {});
+    this.modal.create(UserAddComponent, {}).subscribe(res => {
+    });
   }
 
   selectRole(data: string): void {
     // @ts-ignore
-    this.params = { keyword: '', roleId: data };
+    this.params = {keyword: '', roleId: data};
     this.st.reload(this.params);
   }
 
@@ -126,7 +122,12 @@ export class UserListComponent implements OnInit {
     });
   }
 
+  private submit(i: STData): void {
+    JSON.stringify(this.st.pureItem(i));
+    this.updateEdit(i, false);
+  }
+
   private updateEdit(i: STData, edit: boolean): void {
-    this.st.setRow(i, { edit }, { refreshSchema: true });
+    this.st.setRow(i, {edit}, {refreshSchema: true});
   }
 }

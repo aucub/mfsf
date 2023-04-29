@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ControlWidget } from '@delon/form';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ControlWidget} from '@delon/form';
 
 @Component({
   selector: 'test',

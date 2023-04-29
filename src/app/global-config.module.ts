@@ -13,8 +13,8 @@ import {NZ_CONFIG, NzConfig} from 'ng-zorro-antd/core/config';
 // #region NG-ALAIN Config
 
 const alainConfig: AlainConfig = {
-  st: { modal: { size: 'lg' } },
-  pageHeader: { homeI18n: 'home' },
+  st: {modal: {size: 'lg'}},
+  pageHeader: {homeI18n: 'home'},
   lodop: {
     license: `A59B099A586B3851E0F0D7FDBF37B603`,
     licenseA: `C94CEE276DB2187AE6B65D56B3FC2848`
@@ -23,7 +23,7 @@ const alainConfig: AlainConfig = {
 };
 
 const alainModules: any[] = [AlainThemeModule.forRoot(), DelonACLModule.forRoot()];
-const alainProvides = [{ provide: ALAIN_CONFIG, useValue: alainConfig }];
+const alainProvides = [{provide: ALAIN_CONFIG, useValue: alainConfig}];
 
 // #region reuse-tab
 /**
@@ -55,7 +55,7 @@ const alainProvides = [{ provide: ALAIN_CONFIG, useValue: alainConfig }];
 
 const ngZorroConfig: NzConfig = {};
 
-const zorroProvides = [{ provide: NZ_CONFIG, useValue: ngZorroConfig }];
+const zorroProvides = [{provide: NZ_CONFIG, useValue: ngZorroConfig}];
 
 // #endregion
 

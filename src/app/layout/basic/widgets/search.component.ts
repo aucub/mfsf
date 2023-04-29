@@ -10,7 +10,7 @@ import {
   OnDestroy,
   Output
 } from '@angular/core';
-import { BehaviorSubject, debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import {BehaviorSubject, debounceTime, distinctUntilChanged, tap} from 'rxjs';
 
 @Component({
   selector: 'header-search',
@@ -51,6 +51,10 @@ export class HeaderSearchComponent implements AfterViewInit, OnDestroy {
   focus = false;
   @HostBinding('class.alain-default__search-toggled')
   searchToggled = false;
+  @Output() readonly toggleChangeChange = new EventEmitter<boolean>();
+
+  constructor(private el: ElementRef<HTMLElement>, private cdr: ChangeDetectorRef) {
+  }
 
   @Input()
   set toggleChange(value: boolean) {
@@ -63,9 +67,6 @@ export class HeaderSearchComponent implements AfterViewInit, OnDestroy {
       setTimeout(() => this.qIpt!.focus());
     }
   }
-  @Output() readonly toggleChangeChange = new EventEmitter<boolean>();
-
-  constructor(private el: ElementRef<HTMLElement>, private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     this.qIpt = this.el.nativeElement.querySelector('.ant-input') as HTMLInputElement;
