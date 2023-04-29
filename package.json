@@ -44,7 +44,7 @@
     "@delon/util": "^15.0.1",
     "crypto-browserify": "^3.12.0",
     "eciesjs": "^0.3.16",
-    "ng-alain": "15.1.0",
+    "ng-alain": "15.2.0",
     "ng-zorro-antd": "^15.0.3",
     "rxjs": "~7.8.0",
     "screenfull": "^6.0.2",
