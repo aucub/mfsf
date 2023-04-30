@@ -1,0 +1,7 @@
+<page-header [title]="'个人设置'"></page-header>
+<nz-card>
+  <sf (formSubmit)="save($event)" [formData]="i" [schema]="schema" [ui]="ui"></sf>
+</nz-card>
+<nz-card>
+  <sf (formSubmit)="UpdatePassword($event)" [schema]="pschema" [ui]="pui"></sf>
+</nz-card>

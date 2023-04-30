@@ -6,12 +6,13 @@ import {SettingsService, User} from '@delon/theme';
 @Component({
   selector: 'header-user',
   template: `
-    <div class="alain-default__nav-item d-flex align-items-center px-sm" nz-dropdown nzPlacement="bottomRight" [nzDropdownMenu]="userMenu">
+    <div class="alain-default__nav-item d-flex align-items-center px-sm" nz-dropdown nzPlacement="bottomRight"
+         [nzDropdownMenu]="userMenu">
       {{ user.name }}
     </div>
     <nz-dropdown-menu #userMenu="nzDropdownMenu">
       <div nz-menu class="width-sm">
-        <div nz-menu-item routerLink="/pro/account/settings">
+        <div nz-menu-item routerLink="/settings/account">
           <i nz-icon nzType="setting" class="mr-sm"></i>
           个人设置
         </div>
