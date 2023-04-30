@@ -2,7 +2,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {STColumn, STComponent} from '@delon/abc/st';
 import {SFSchema} from '@delon/form';
 import {_HttpClient, ModalHelper} from '@delon/theme';
-import {dateTimePickerUtil} from '@delon/util';
 
 @Component({
   selector: 'app-query-publish',
@@ -22,22 +21,22 @@ export class QueryPublishComponent implements OnInit {
     },
     required: ['start', 'stop']
   };
-  url = `/query/queryPublish`;
+  url = '/query/queryPublish';
   method = 'POST';
-  allInBody = false;
   params = {
-    start: dateTimePickerUtil.format(new Date(new Date().valueOf() - 60 * 60 * 1000), 'yyyy-MM-DDTHH:mm:ssZ'),
-    stop: dateTimePickerUtil.format(new Date(), 'yyyy-MM-DDTHH:mm:ssZ')
-  };
+    start: new Date(new Date().valueOf() - 60 * 60 * 1000).toISOString(),
+    stop: new Date().toISOString()
+  }
   resReName = {list: 'data.records'};
   searchSchema: SFSchema = {
     properties: {
-      keyword: {
+      messageId: {
         type: 'string',
-        title: ''
+        title: '编号'
       }
     }
   };
+  @ViewChild('st') private readonly st!: STComponent;
   columns: STColumn[] = [
     {title: '消息ID', index: 'messageId'},
     {title: '源', index: 'source'},
@@ -61,12 +60,12 @@ export class QueryPublishComponent implements OnInit {
       ]
     }
   ];
-  @ViewChild('st') private readonly st!: STComponent;
 
   constructor(private http: _HttpClient, private modal: ModalHelper) {
   }
 
   ngOnInit(): void {
+
   }
 
   add(): void {
@@ -76,7 +75,10 @@ export class QueryPublishComponent implements OnInit {
   }
 
   submit(value: any): void {
-    this.params = value;
-    this.st.reload;
+    this.st.reload(value);
+  }
+
+  ngAfterViewInit() {
+    this.st.scroll = {x: '1200px'};
   }
 }
