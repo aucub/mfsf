@@ -13,6 +13,8 @@ import {UserAddComponent} from './add/add.component';
 import {UserAddService} from './add/add.service';
 import {UserTokenComponent} from './token/token.component';
 import {UserTokenService} from './token/token.service';
+import {UserPushComponent} from './push/push.component';
+import {UserPushService} from './push/push.service';
 
 const COMPONENTS: Type<void>[] = [
   UserListComponent,
@@ -20,7 +22,8 @@ const COMPONENTS: Type<void>[] = [
   UserUeditComponent,
   UserViewComponent,
   UserAddComponent,
-  UserTokenComponent];
+  UserTokenComponent,
+  UserPushComponent];
 
 @NgModule({
   imports: [
@@ -34,7 +37,8 @@ const COMPONENTS: Type<void>[] = [
     UserUeditService,
     UserViewService,
     UserAddService,
-    UserTokenService
+    UserTokenService,
+    UserPushService
   ],
 })
 export class UserModule {

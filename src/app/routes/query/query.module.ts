@@ -4,9 +4,15 @@ import {QueryRoutingModule} from './query-routing.module';
 import {QueryService} from './query.service';
 import {QueryPublishComponent} from './publish/publish.component';
 import {QueryPublishService} from './publish/publish.service';
+import {QueryConsumeComponent} from './consume/consume.component';
+import {QueryConsumeService} from './consume/consume.service';
+import {QueryPushComponent} from './push/push.component';
+import {QueryPushService} from './push/push.service';
 
 const COMPONENTS: Type<void>[] = [
-  QueryPublishComponent];
+  QueryPublishComponent,
+  QueryConsumeComponent,
+  QueryPushComponent];
 
 @NgModule({
   imports: [
@@ -16,7 +22,9 @@ const COMPONENTS: Type<void>[] = [
   declarations: COMPONENTS,
   providers: [
     QueryService,
-    QueryPublishService
+    QueryPublishService,
+    QueryConsumeService,
+    QueryPushService
   ],
 })
 export class QueryModule {

@@ -1,0 +1,13 @@
+<nz-card>
+  <sf (formSubmit)="submit($event)" [schema]="schema"></sf>
+  <sf (formReset)="st.reset($event)" (formSubmit)="st.reset($event)" [schema]="searchSchema" mode="search"></sf>
+  <div style="width: 1200px;">
+    <st
+      #st
+      [columns]="columns"
+      [data]="url"
+      [req]="{ method: method, params: params }"
+      [res]="{ reName: resReName }"
+    ></st>
+  </div>
+</nz-card>

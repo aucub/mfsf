@@ -10,12 +10,15 @@ import {LogLinklistComponent} from './linklist/linklist.component';
 import {LogLinklistService} from './linklist/linklist.service';
 import {LogOnlinelistComponent} from './onlinelist/onlinelist.component';
 import {LogOnlinelistService} from './onlinelist/onlinelist.service';
+import {LogPushComponent} from './push/push.component';
+import {LogPushService} from './push/push.service';
 
 const COMPONENTS: Type<void>[] = [
   LogConnectlistComponent,
   LogLoginlistComponent,
   LogLinklistComponent,
-  LogOnlinelistComponent];
+  LogOnlinelistComponent,
+  LogPushComponent];
 
 @NgModule({
   imports: [
@@ -28,7 +31,8 @@ const COMPONENTS: Type<void>[] = [
     LogConnectlistService,
     LogLoginlistService,
     LogLinklistService,
-    LogOnlinelistService
+    LogOnlinelistService,
+    LogPushService
   ],
 })
 export class LogModule {

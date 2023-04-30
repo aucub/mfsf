@@ -2,45 +2,47 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {STColumn, STComponent} from '@delon/abc/st';
 import {SFSchema} from '@delon/form';
 import {_HttpClient, ModalHelper} from '@delon/theme';
-import {LogPushComponent} from "../push/push.component";
 
 @Component({
-  selector: 'app-log-connectlist',
-  templateUrl: './connectlist.component.html'
+  selector: 'app-query-push',
+  templateUrl: './push.component.html'
 })
-export class LogConnectlistComponent implements OnInit {
-  url = `/user/connectList`;
-  method = 'GET';
+export class QueryPushComponent implements OnInit {
+  schema: SFSchema = {
+    properties: {
+      start: {
+        type: 'string',
+        format: 'date-time'
+      },
+      stop: {
+        type: 'string',
+        format: 'date-time'
+      }
+    },
+    required: ['start', 'stop']
+  };
+  url = `/query/queryPush`;
+  method = 'POST';
+  params = {
+    start: new Date(new Date().valueOf() - 60 * 60 * 1000).toISOString(),
+    stop: new Date().toISOString()
+  };
   resReName = {list: 'data.records'};
   searchSchema: SFSchema = {
     properties: {
-      keyword: {
+      userId: {
         type: 'string',
-        title: '用户名'
+        title: ''
       }
     }
   };
   columns: STColumn[] = [
-    {title: '用户名', index: 'username'},
-    {title: '昵称', index: 'nickname'},
-    {title: '上次登录时间', index: 'loginTime'},
-    {title: '备注', index: 'note'},
-    {title: '创建者', index: 'creator'},
-    {title: '更新者', index: 'updater'},
-    {title: '注册时间', index: 'createTime'},
-    {title: '更新时间', index: 'lastUpdateTime'},
-    {title: '类型', index: 'type'},
+    {title: '用户ID', index: 'userId'},
+    {title: '路由', index: 'route'},
+    {title: '内容', index: 'body'},
     {
       title: '',
       buttons: [
-        {
-          text: '推送',
-          type: 'modal',
-          modal: {
-            component: LogPushComponent
-          },
-          click: (_record, modal) => console.log('')
-        }
         // { text: '查看', click: (item: any) => `/form/${item.id}` },
         // { text: '编辑', type: 'static', component: FormEditComponent, click: 'reload' },
       ]
@@ -58,5 +60,13 @@ export class LogConnectlistComponent implements OnInit {
     // this.modal
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
+  }
+
+  submit(value: any): void {
+    this.st.reload(value);
+  }
+
+  ngAfterViewInit() {
+    this.st.scroll = {x: '1200px'};
   }
 }
