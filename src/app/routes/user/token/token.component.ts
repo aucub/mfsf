@@ -6,7 +6,8 @@ import {NzModalRef} from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-user-token',
-  template: ` <sf [schema]="schema" (formSubmit)="save($event)"></sf>
+  template: `
+    <sf [schema]="schema" (formSubmit)="save($event)"></sf>
     <nz-card>
       <div nz-body>
         <p>{{ token }}</p>

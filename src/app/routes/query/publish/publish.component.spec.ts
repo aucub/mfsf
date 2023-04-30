@@ -9,7 +9,7 @@ describe('QueryPublishComponent', () => {
     TestBed.configureTestingModule({
       declarations: [QueryPublishComponent]
     })
-        .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

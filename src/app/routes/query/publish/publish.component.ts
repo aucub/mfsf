@@ -36,7 +36,6 @@ export class QueryPublishComponent implements OnInit {
       }
     }
   };
-  @ViewChild('st') private readonly st!: STComponent;
   columns: STColumn[] = [
     {title: '消息ID', index: 'messageId'},
     {title: '源', index: 'source'},
@@ -60,6 +59,7 @@ export class QueryPublishComponent implements OnInit {
       ]
     }
   ];
+  @ViewChild('st') private readonly st!: STComponent;
 
   constructor(private http: _HttpClient, private modal: ModalHelper) {
   }
