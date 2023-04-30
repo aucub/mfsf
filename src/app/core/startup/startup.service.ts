@@ -7,7 +7,7 @@ import {ACLService} from '@delon/acl';
 import {Observable, zip, of, catchError, map} from 'rxjs';
 import type {NzSafeAny} from 'ng-zorro-antd/core/types';
 import {NzIconService} from 'ng-zorro-antd/icon';
-
+import {NzIconModule} from 'ng-zorro-antd/icon';
 import {ICONS} from '../../../style-icons';
 import {ICONS_AUTO} from '../../../style-icons-auto';
 
@@ -68,8 +68,8 @@ export class StartupService {
     // }
     // mock
     const app: any = {
-      name: `ng-alain`,
-      description: `Ng-zorro admin panel front-end framework`
+      name: `mfsf`,
+      description: ``
     };
     const user: any = {
       name: 'Admin',
@@ -90,8 +90,67 @@ export class StartupService {
         group: true,
         children: [
           {
-            text: 'Dashboard',
+            text: '仪表盘',
             link: '/dashboard',
+            icon: {type: 'icon', value: 'appstore'}
+          }
+        ]
+      },
+      {
+        text: '用户',
+        group: true,
+        children: [
+          {
+            text: '用户管理',
+            link: '/user/list',
+            icon: {type: 'icon', value: 'user'}
+          }
+        ]
+      }
+      ,
+      {
+        text: '日志',
+        group: true,
+        children: [
+          {
+            text: '连接',
+            link: '/log/connectlist',
+            icon: {type: 'icon', value: 'Swap'}
+          },
+          {
+            text: '通信',
+            link: '/log/linklist',
+            icon: {type: 'icon', value: 'link'}
+          },
+          {
+            text: '登录',
+            link: '/log/loginlist',
+            icon: {type: 'icon', value: 'login'}
+          },
+          {
+            text: '在线',
+            link: '/log/onlinelist',
+            icon: {type: 'icon', value: 'swap'}
+          }
+        ]
+      },
+      {
+        text: '查询',
+        group: true,
+        children: [
+          {
+            text: '发送',
+            link: '/query/publish',
+            icon: {type: 'icon', value: 'message'}
+          },
+          {
+            text: '接收',
+            link: '/query/consume',
+            icon: {type: 'icon', value: 'message fill'}
+          },
+          {
+            text: '推送',
+            link: '/query/push',
             icon: {type: 'icon', value: 'appstore'}
           }
         ]
