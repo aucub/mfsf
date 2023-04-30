@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {StartupService} from '@core';
 import {ReuseTabService} from '@delon/abc/reuse-tab';
 import {DA_SERVICE_TOKEN, ITokenModel, ITokenService, SocialOpenType, SocialService} from '@delon/auth';
-import {_HttpClient, SettingsService} from '@delon/theme';
+import {_HttpClient, SettingsService, User} from '@delon/theme';
 import {environment} from '@env/environment';
 import {DoLoginRes} from '@sta';
 import {NzTabChangeEvent} from 'ng-zorro-antd/tabs';
@@ -104,6 +104,10 @@ export class UserLoginComponent implements OnDestroy {
         const tokenTimeout = +new Date() + 1000 * 60 * 60 * 24 * 30;
         const token: ITokenModel = {token: res.data, expired: tokenTimeout};
         this.tokenService.set(token);
+        const user: User = {
+          name: this.form.value.userName,
+        };
+        this.settingsService.setUser(user)
         // 重新获取 StartupService 内容，我们始终认为应用信息一般都会受当前用户授权范围而影响
         this.startupSrv.load().subscribe(() => {
           let url = this.tokenService.referrer!.url || '/';

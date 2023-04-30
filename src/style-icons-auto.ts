@@ -4,12 +4,13 @@
 
 import {
   FullscreenExitOutline,
-  FullscreenOutline,
+  FullscreenOutline, LinkOutline,
   LockOutline,
   LogoutOutline,
   SettingOutline,
   ToolOutline,
-  UserOutline
+  UserOutline,
+  LoginOutline
 } from '@ant-design/icons-angular/icons';
 
 export const ICONS_AUTO = [
@@ -19,5 +20,6 @@ export const ICONS_AUTO = [
   LogoutOutline,
   SettingOutline,
   ToolOutline,
-  UserOutline
+  UserOutline,
+
 ];
