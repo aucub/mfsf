@@ -1,0 +1,14 @@
+<page-header [action]="phActionTpl">
+  <ng-template #phActionTpl></ng-template>
+</page-header>
+<nz-card>
+  <sf (formSubmit)="submit($event)" [schema]="schema"></sf>
+  <sf (formReset)="st.reset($event)" (formSubmit)="st.reset($event)" [schema]="searchSchema" mode="search"></sf>
+  <st
+    #st
+    [columns]="columns"
+    [data]="url"
+    [req]="{ method: method, allInBody: allInBody, params: params }"
+    [res]="{ reName: resReName }"
+  ></st>
+</nz-card>

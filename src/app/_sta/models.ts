@@ -244,3 +244,21 @@ export interface DoLoginRes {
   message: string;
   data: string;
 }
+
+export interface PublishRecord {
+  messageId: string;
+  source: string;
+  type: string;
+  appId: string;
+  userId: string;
+  priority: number;
+  expiration: string;
+  delay: number;
+  publishingId: number;
+  dataContentType: string;
+  contentEncoding: string;
+  subject: string;
+  body: string;
+  submit: boolean;
+  time: number;
+}

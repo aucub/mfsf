@@ -32,7 +32,8 @@ const routes: Routes = [
       {
         path: 'log',
         loadChildren: () => import('./log/log.module').then(m => m.LogModule)
-      }
+      },
+      {path: 'query', loadChildren: () => import('./query/query.module').then(m => m.QueryModule)}
     ]
   },
   // 空白布局
