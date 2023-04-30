@@ -15,25 +15,6 @@ import {BehaviorSubject, debounceTime, distinctUntilChanged, tap} from 'rxjs';
 @Component({
   selector: 'header-search',
   template: `
-    <nz-input-group [nzPrefix]="iconTpl" [nzSuffix]="loadingTpl">
-      <ng-template #iconTpl>
-        <i nz-icon [nzType]="focus ? 'arrow-down' : 'search'"></i>
-      </ng-template>
-      <ng-template #loadingTpl>
-        <i *ngIf="loading" nz-icon nzType="loading"></i>
-      </ng-template>
-      <input
-        type="text"
-        nz-input
-        [(ngModel)]="q"
-        [nzAutocomplete]="auto"
-        (input)="search($event)"
-        (focus)="qFocus()"
-        (blur)="qBlur()"
-        hotkey="F1"
-        [attr.placeholder]="'搜索：员工、文件、照片等，按 F1 可触发'"
-      />
-    </nz-input-group>
     <nz-autocomplete nzBackfill #auto>
       <nz-auto-option *ngFor="let i of options" [nzValue]="i">{{ i }}</nz-auto-option>
     </nz-autocomplete>

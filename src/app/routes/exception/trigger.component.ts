@@ -8,7 +8,6 @@ import {_HttpClient} from '@delon/theme';
     <div class="pt-lg">
       <nz-card>
         <button *ngFor="let t of types" (click)="go(t)" nz-button nzDanger>触发{{ t }}</button>
-        <button nz-button nzType="link" (click)="refresh()">触发刷新Token</button>
       </nz-card>
     </div>
   `
