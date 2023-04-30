@@ -21,8 +21,6 @@ export class UserLoginComponent implements OnDestroy {
   form = this.fb.nonNullable.group({
     userName: ['', [Validators.required, Validators.pattern(/^(root|user)$/)]],
     password: ['', [Validators.required, Validators.pattern(/^(root)$/)]],
-    mobile: ['', [Validators.required, Validators.pattern(/^1\d{10}$/)]],
-    captcha: ['', [Validators.required]],
     remember: [true]
   });
 
@@ -56,22 +54,6 @@ export class UserLoginComponent implements OnDestroy {
     this.type = index!;
   }
 
-  getCaptcha(): void {
-    const mobile = this.form.controls.mobile;
-    if (mobile.invalid) {
-      mobile.markAsDirty({onlySelf: true});
-      mobile.updateValueAndValidity({onlySelf: true});
-      return;
-    }
-    this.count = 59;
-    this.interval$ = setInterval(() => {
-      this.count -= 1;
-      if (this.count <= 0) {
-        clearInterval(this.interval$);
-      }
-    }, 1000);
-  }
-
   // #endregion
   submit(): void {
     this.error = '';
@@ -82,15 +64,6 @@ export class UserLoginComponent implements OnDestroy {
       password.markAsDirty();
       password.updateValueAndValidity();
       if (userName.invalid || password.invalid) {
-        return;
-      }
-    } else {
-      const {mobile, captcha} = this.form.controls;
-      mobile.markAsDirty();
-      mobile.updateValueAndValidity();
-      captcha.markAsDirty();
-      captcha.updateValueAndValidity();
-      if (mobile.invalid || captcha.invalid) {
         return;
       }
     }

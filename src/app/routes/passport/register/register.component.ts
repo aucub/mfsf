@@ -17,12 +17,10 @@ import {finalize} from 'rxjs';
 export class UserRegisterComponent implements OnDestroy {
   form = this.fb.nonNullable.group(
     {
-      mail: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.minLength(4)]],
+      nickname: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(6), UserRegisterComponent.checkPassword.bind(this)]],
-      confirm: ['', [Validators.required, Validators.minLength(6)]],
-      mobilePrefix: ['+86'],
-      mobile: ['', [Validators.required, Validators.pattern(/^1\d{10}$/)]],
-      captcha: ['', [Validators.required]]
+      confirm: ['', [Validators.required, Validators.minLength(6)]]
     },
     {
       validators: MatchControl('password', 'confirm')
@@ -72,12 +70,6 @@ export class UserRegisterComponent implements OnDestroy {
   }
 
   getCaptcha(): void {
-    const {mobile} = this.form.controls;
-    if (mobile.invalid) {
-      mobile.markAsDirty({onlySelf: true});
-      mobile.updateValueAndValidity({onlySelf: true});
-      return;
-    }
     this.count = 59;
     this.cdr.detectChanges();
     this.interval$ = setInterval(() => {
@@ -106,7 +98,7 @@ export class UserRegisterComponent implements OnDestroy {
     this.loading = true;
     this.cdr.detectChanges();
     this.http
-      .post('/register', data, null, {
+      .post('/register/user', data, null, {
         context: new HttpContext().set(ALLOW_ANONYMOUS, true)
       })
       .pipe(
@@ -116,7 +108,7 @@ export class UserRegisterComponent implements OnDestroy {
         })
       )
       .subscribe(() => {
-        this.router.navigate(['passport', 'register-result'], {queryParams: {email: data.mail}});
+        this.router.navigate(['passport', 'register-result'], {queryParams: {username: data.username}});
       });
   }
 
