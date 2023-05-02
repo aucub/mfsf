@@ -19,14 +19,5 @@
     [req]="{ method: method, reName: reName, allInBody: allInBody, params: params }"
     [res]="{ reName: resReName }"
   >
-    <ng-template let-index="index" let-item st-row="nicknameTpl">
-      <input (ngModelChange)="st.setRow(index, { nickname: $event })" *ngIf="item.edit" [ngModel]="item.nickname"
-             nz-input/>
-      <ng-container *ngIf="!item.edit">{{ item.nickname }}</ng-container>
-    </ng-template>
-    <ng-template let-index="index" let-item st-row="noteTpl">
-      <input (ngModelChange)="st.setRow(index, { note: $event })" *ngIf="item.edit" [ngModel]="item.note" nz-input/>
-      <ng-container *ngIf="!item.edit">{{ item.note }}</ng-container>
-    </ng-template>
   </st>
 </nz-card>

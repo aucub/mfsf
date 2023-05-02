@@ -7,8 +7,7 @@ import {DA_SERVICE_TOKEN, ITokenService} from '@delon/auth';
   styleUrls: ['./passport.component.less']
 })
 export class LayoutPassportComponent implements OnInit {
-  links = [
-  ];
+  links = [];
 
   constructor(@Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService) {
   }

@@ -1,4 +1,4 @@
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {LogOnlinelistComponent} from './onlinelist.component';
 
 describe('LogOnlinelistComponent', () => {

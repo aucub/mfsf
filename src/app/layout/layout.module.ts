@@ -24,6 +24,8 @@ import {HeaderFullScreenComponent} from './basic/widgets/fullscreen.component';
 import {HeaderSearchComponent} from './basic/widgets/search.component';
 import {HeaderUserComponent} from './basic/widgets/user.component';
 import {LayoutBlankComponent} from './blank/blank.component';
+// passport
+import {LayoutPassportComponent} from './passport/passport.component';
 
 const COMPONENTS = [LayoutBasicComponent, LayoutBlankComponent];
 
@@ -33,9 +35,6 @@ const HEADERCOMPONENTS = [
   HeaderClearStorageComponent,
   HeaderUserComponent,
 ];
-
-// passport
-import {LayoutPassportComponent} from './passport/passport.component';
 
 const PASSPORT = [
   LayoutPassportComponent

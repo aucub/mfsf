@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {SFSchema, SFTextWidgetSchema, SFUISchema} from '@delon/form';
-import {ModalHelper, _HttpClient} from '@delon/theme';
+import {SFSchema, SFUISchema} from '@delon/form';
+import {_HttpClient, ModalHelper} from '@delon/theme';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {NzModalRef} from 'ng-zorro-antd/modal';
 

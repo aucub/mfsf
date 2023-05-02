@@ -1,6 +1,4 @@
-import {inject} from '@angular/core';
-import {CanActivateFn, Router} from '@angular/router';
-import {MenuService} from '@delon/theme';
+import {CanActivateFn} from '@angular/router';
 import {Observable} from 'rxjs';
 
 /**

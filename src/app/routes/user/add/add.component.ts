@@ -6,8 +6,8 @@ import {NzModalRef} from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-user-add',
-  template: ` <sf [schema]="schema" (formSubmit)="save($event)"></sf>`
-})
+  templateUrl: './add.component.html'
+})//<sf [schema]="schema" (formSubmit)="save($event)"></sf>
 export class UserAddComponent implements OnInit {
   schema: SFSchema = {
     properties: {

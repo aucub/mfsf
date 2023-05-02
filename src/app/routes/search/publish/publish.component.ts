@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ModalHelper, _HttpClient} from '@delon/theme';
+import {_HttpClient, ModalHelper} from '@delon/theme';
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 
 @Component({

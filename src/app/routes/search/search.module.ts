@@ -7,7 +7,8 @@ import {
   NgAisHighlightModule,
   NgAisHitsModule,
   NgAisInstantSearchModule,
-  NgAisPaginationModule, NgAisSearchBoxModule
+  NgAisPaginationModule,
+  NgAisSearchBoxModule
 } from "angular-instantsearch";
 import {SearchConsumeComponent} from './consume/consume.component';
 import {SearchPushComponent} from './push/push.component';

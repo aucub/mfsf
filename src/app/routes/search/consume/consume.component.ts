@@ -1,7 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {STColumn, STComponent} from '@delon/abc/st';
-import {SFSchema} from '@delon/form';
-import {ModalHelper, _HttpClient} from '@delon/theme';
+import {Component, OnInit} from '@angular/core';
+import {_HttpClient, ModalHelper} from '@delon/theme';
 import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 
 @Component({

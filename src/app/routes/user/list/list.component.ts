@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {STChange, STColumn, STComponent, STData} from '@delon/abc/st';
+import {STChange, STColumn, STComponent} from '@delon/abc/st';
 import {SFSchema} from '@delon/form';
 import {_HttpClient, ModalHelper} from '@delon/theme';
 import {BaseResponseListRole, Role} from '@sta';
@@ -66,7 +66,7 @@ export class UserListComponent implements OnInit {
           text: '删除',
           icon: 'delete',
           type: 'del',
-          click: _record => this.delete(_record.id)
+          click: (_record) => this.delete(_record['id'])
         },
         {
           text: 'token',
@@ -120,14 +120,5 @@ export class UserListComponent implements OnInit {
       this.msgSrv.success(res.data);
       this.st.reload;
     });
-  }
-
-  private submit(i: STData): void {
-    JSON.stringify(this.st.pureItem(i));
-    this.updateEdit(i, false);
-  }
-
-  private updateEdit(i: STData, edit: boolean): void {
-    this.st.setRow(i, {edit}, {refreshSchema: true});
   }
 }

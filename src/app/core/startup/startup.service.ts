@@ -1,13 +1,12 @@
-import {Injectable, Inject} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {DA_SERVICE_TOKEN, ITokenService} from '@delon/auth';
-import {ALAIN_I18N_TOKEN, MenuService, SettingsService, TitleService} from '@delon/theme';
+import {MenuService, SettingsService, TitleService} from '@delon/theme';
 import {ACLService} from '@delon/acl';
-import {Observable, zip, of, catchError, map} from 'rxjs';
+import {catchError, map, Observable, of} from 'rxjs';
 import type {NzSafeAny} from 'ng-zorro-antd/core/types';
 import {NzIconService} from 'ng-zorro-antd/icon';
-import {NzIconModule} from 'ng-zorro-antd/icon';
 import {ICONS} from '../../../style-icons';
 import {ICONS_AUTO} from '../../../style-icons-auto';
 
