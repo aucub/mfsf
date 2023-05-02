@@ -70,6 +70,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/instantsearch.css/themes/algolia.css",
               "src/styles.less"
             ],
             "scripts": [],
@@ -149,6 +150,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/instantsearch.css/themes/algolia.css",
               "src/styles.less"
             ],
             "scripts": []

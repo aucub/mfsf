@@ -8,11 +8,11 @@ import {QueryConsumeComponent} from './consume/consume.component';
 import {QueryConsumeService} from './consume/consume.service';
 import {QueryPushComponent} from './push/push.component';
 import {QueryPushService} from './push/push.service';
-import {QueryListComponent} from './list/list.component';
+import {QuerySearchComponent} from './search/search.component';
 import {
   NgAisClearRefinementsModule,
   NgAisConfigureModule, NgAisHighlightModule, NgAisHitsModule,
-  NgAisInstantSearchModule, NgAisPaginationModule, NgAisRefinementListModule,
+  NgAisInstantSearchModule, NgAisPaginationModule, NgAisRefinementListModule, NgAisRootModule,
   NgAisSearchBoxModule
 } from "angular-instantsearch";
 import {NgOptimizedImage} from "@angular/common";
@@ -21,21 +21,14 @@ const COMPONENTS: Type<void>[] = [
   QueryPublishComponent,
   QueryConsumeComponent,
   QueryPushComponent,
-  QueryListComponent];
+  QuerySearchComponent];
 
 @NgModule({
   imports: [
     SharedModule,
     QueryRoutingModule,
     NgOptimizedImage,
-    NgAisInstantSearchModule,
-    NgAisClearRefinementsModule,
-    NgAisConfigureModule,
-    NgAisRefinementListModule,
-    NgAisSearchBoxModule,
-    NgAisHitsModule,
-    NgAisHighlightModule,
-    NgAisPaginationModule
+    NgAisRootModule
   ],
   declarations: COMPONENTS,
   providers: [

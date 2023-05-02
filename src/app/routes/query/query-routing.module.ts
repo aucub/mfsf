@@ -3,14 +3,14 @@ import {RouterModule, Routes} from '@angular/router';
 import {QueryPublishComponent} from './publish/publish.component';
 import {QueryConsumeComponent} from './consume/consume.component';
 import {QueryPushComponent} from './push/push.component';
-import {QueryListComponent} from './list/list.component';
+import {QuerySearchComponent} from './search/search.component';
 
 const routes: Routes = [
 
   {path: 'publish', component: QueryPublishComponent},
   {path: 'consume', component: QueryConsumeComponent},
   {path: 'push', component: QueryPushComponent},
-  {path: 'list', component: QueryListComponent}];
+  {path: 'search', component: QuerySearchComponent}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

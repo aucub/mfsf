@@ -13,7 +13,8 @@ import {
   SendOutline,
   ShrinkOutline,
   EllipsisOutline,
-  MenuFoldOutline
+  MenuFoldOutline,
+  SelectOutline
 } from '@ant-design/icons-angular/icons';
 
-export const ICONS = [InfoOutline, BulbOutline, ProfileOutline, ExceptionOutline, LinkOutline, LoginOutline, ApiOutline, DashboardOutline, LinkOutline, SwapOutline, SendOutline, ShrinkOutline, EllipsisOutline, MenuFoldOutline];
+export const ICONS = [InfoOutline, BulbOutline, ProfileOutline, ExceptionOutline, LinkOutline, LoginOutline, ApiOutline, DashboardOutline, LinkOutline, SwapOutline, SendOutline, ShrinkOutline, EllipsisOutline, MenuFoldOutline, SelectOutline];

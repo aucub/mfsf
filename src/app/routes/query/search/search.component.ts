@@ -1,14 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {ModalHelper, _HttpClient} from '@delon/theme';
 import {instantMeiliSearch} from '@meilisearch/instant-meilisearch'
-import {InstantSearchConfig} from "angular-instantsearch/instantsearch/instantsearch";
+import {menu} from "instantsearch.js/es/widgets";
 
 
 @Component({
-  selector: 'app-query-list',
-  templateUrl: './list.component.html',
+  selector: 'app-query-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.css']
 })
-export class QueryListComponent implements OnInit {
+export class QuerySearchComponent implements OnInit {
   searchClient = instantMeiliSearch(
     'http://47.113.201.150:7700/',
     'root',
@@ -16,8 +17,7 @@ export class QueryListComponent implements OnInit {
       finitePagination: true
     }
   );
-  title = "angular-app";
-  searchconfig: InstantSearchConfig = {
+  searchconfig = {
     indexName: "PublishRecord",
     searchClient: this.searchClient
   };
@@ -26,5 +26,9 @@ export class QueryListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  uid(value: string) {
+
   }
 }

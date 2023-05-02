@@ -152,6 +152,11 @@ export class StartupService {
             text: '推送',
             link: '/query/push',
             icon: {type: 'icon', value: 'ellipsis'}
+          },
+          {
+            text: '搜索',
+            link: '/query/search',
+            icon: {type: 'icon', value: 'search'}
           }
         ]
       }

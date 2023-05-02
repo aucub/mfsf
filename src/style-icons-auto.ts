@@ -10,7 +10,7 @@ import {
   SettingOutline,
   ToolOutline,
   UserOutline,
-  LoginOutline
+  LoginOutline, SelectOutline
 } from '@ant-design/icons-angular/icons';
 
 export const ICONS_AUTO = [
@@ -21,5 +21,5 @@ export const ICONS_AUTO = [
   SettingOutline,
   ToolOutline,
   UserOutline,
-
+  SelectOutline
 ];
