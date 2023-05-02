@@ -25,6 +25,7 @@
     "crypto": false
   },
   "dependencies": {
+    "@algolia/client-search": "^4.17.0",
     "@angular/animations": "^15.1.0",
     "@angular/common": "^15.1.0",
     "@angular/compiler": "^15.1.0",
@@ -42,8 +43,11 @@
     "@delon/mock": "^15.0.1",
     "@delon/theme": "^15.0.1",
     "@delon/util": "^15.0.1",
+    "@meilisearch/instant-meilisearch": "^0.13.0",
+    "angular-instantsearch": "3.0.0-beta.5",
     "crypto-browserify": "^3.12.0",
     "eciesjs": "^0.3.16",
+    "instantsearch.js": "^4.55.0",
     "ng-alain": "15.2.0",
     "ng-zorro-antd": "^15.0.3",
     "rxjs": "~7.8.0",

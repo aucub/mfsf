@@ -29,6 +29,7 @@ import {LayoutModule} from './layout/layout.module';
 import {RoutesModule} from './routes/routes.module';
 import {SharedModule} from './shared/shared.module';
 import {STWidgetModule} from './shared/st-widget/st-widget.module';
+import {NgAisModule} from "angular-instantsearch";
 
 const LANG = {
   abbr: 'zh',

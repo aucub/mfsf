@@ -1,0 +1,57 @@
+<header class="header">
+  <h1 class="header-title">MeiliSearch</h1>
+</header>
+
+<div class="container">
+  <ais-instantsearch [config]="searchconfig">
+    <div class="search-panel">
+      <div class="search-panel__filters">
+        <ais-clear-refinements></ais-clear-refinements>
+        <ais-configure [searchParameters]="{ hitsPerPage: 8 }"></ais-configure>
+        <h2>Genres</h2>
+        <ais-refinement-list attribute="genres"></ais-refinement-list>
+        <h2>Players</h2>
+        <ais-refinement-list attribute="players"></ais-refinement-list>
+        <h2>Platforms</h2>
+        <ais-refinement-list attribute="platforms"></ais-refinement-list>
+        <h2>Misc</h2>
+        <ais-refinement-list attribute="misc"></ais-refinement-list>
+      </div>
+
+      <div class="search-panel__results">
+        <div class="searchbox">
+          <ais-search-box placeholder=""></ais-search-box>
+        </div>
+
+        <ais-hits>
+          <ng-template let-hits="hits">
+            <div *ngIf="hits.length === 0">
+              No results found matching <strong></strong>.
+            </div>
+            <ol class="ais-Hits-list">
+              <li *ngFor="let hit of hits" class="ais-Hits-item">
+                <div>
+                  <div class="hit-name">
+                    <ais-highlight [hit]="hit" attribute="name"></ais-highlight>
+                  </div>
+                  <img alt="{{hit.name}}" src="{{hit.image}}"/>
+                  <div class="hit-description">
+                    <ais-highlight
+                      [hit]="hit"
+                      attribute="description"
+                    ></ais-highlight>
+                  </div>
+                  <div class="hit-price">price: ${{hit.price}}</div>
+                </div>
+              </li>
+            </ol>
+          </ng-template>
+        </ais-hits>
+
+        <div class="pagination">
+          <ais-pagination></ais-pagination>
+        </div>
+      </div>
+    </div>
+  </ais-instantsearch>
+</div>
