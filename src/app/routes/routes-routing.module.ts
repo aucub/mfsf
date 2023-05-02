@@ -36,7 +36,10 @@ const routes: Routes = [
       , {
         path: 'query',
         loadChildren: () => import('./query/query.module').then((m) => m.QueryModule)
-      }, {path: 'settings', loadChildren: () => import('./settings/settings.module').then((m) => m.SettingsModule)}]
+      }, {
+        path: 'settings',
+        loadChildren: () => import('./settings/settings.module').then((m) => m.SettingsModule)
+      }, {path: 'search', loadChildren: () => import('./search/search.module').then((m) => m.SearchModule)}]
   },
   // 空白布局
   // {

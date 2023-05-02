@@ -1,0 +1,18 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.search-panel {
+  display: flex;
+}
+
+.searchbox {
+  margin-bottom: 2rem;
+}
+
+.pagination {
+  margin: 2rem auto;
+  text-align: center;
+}

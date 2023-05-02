@@ -1,14 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ModalHelper, _HttpClient} from '@delon/theme';
-import {instantMeiliSearch} from '@meilisearch/instant-meilisearch'
-
+import {instantMeiliSearch} from "@meilisearch/instant-meilisearch";
 
 @Component({
-  selector: 'app-query-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  selector: 'app-search-publish',
+  templateUrl: './publish.component.html',
+  styleUrls: ['./publish.component.css']
 })
-export class QuerySearchComponent implements OnInit {
+export class SearchPublishComponent implements OnInit {
   searchClient = instantMeiliSearch(
     'http://47.113.201.150:7700/',
     'root',

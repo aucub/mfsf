@@ -152,11 +152,27 @@ export class StartupService {
             text: '推送',
             link: '/query/push',
             icon: {type: 'icon', value: 'ellipsis'}
+          }
+        ]
+      },
+      {
+        text: '搜索',
+        group: true,
+        children: [
+          {
+            text: '发送',
+            link: '/search/publish',
+            icon: {type: 'icon', value: 'send'}
           },
           {
-            text: '搜索',
-            link: '/query/search',
-            icon: {type: 'icon', value: 'search'}
+            text: '接收',
+            link: '/search/consume',
+            icon: {type: 'icon', value: 'shrink'}
+          },
+          {
+            text: '推送',
+            link: '/search/push',
+            icon: {type: 'icon', value: 'ellipsis'}
           }
         ]
       }
