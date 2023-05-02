@@ -1,13 +1,3 @@
-<a [nzDropdownMenu]="menu" nz-dropdown>
-  <span nz-icon nzType="down"></span>
-</a>
-<nz-dropdown-menu #menu="nzDropdownMenu">
-  <ul nz-menu>
-    <li (click)="uid('PublishRecord')" nz-menu-item>PublishRecord</li>
-    <li (click)="uid('ConsumeRecord')" nz-menu-item>ConsumeRecord</li>
-    <li (click)="uid('PushMessage')" nz-menu-item>PushMessage</li>
-  </ul>
-</nz-dropdown-menu>
 <div class="container">
   <ais-instantsearch [config]="searchconfig">
     <div class="search-panel">

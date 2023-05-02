@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ModalHelper, _HttpClient} from '@delon/theme';
 import {instantMeiliSearch} from '@meilisearch/instant-meilisearch'
-import {menu} from "instantsearch.js/es/widgets";
 
 
 @Component({
@@ -26,9 +25,5 @@ export class QuerySearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  uid(value: string) {
-
   }
 }
