@@ -7,8 +7,6 @@ import {UserEditComponent} from './edit/edit.component';
 import {UserEditService} from './edit/edit.service';
 import {UserUeditComponent} from './uedit/uedit.component';
 import {UserUeditService} from './uedit/uedit.service';
-import {UserViewComponent} from './view/view.component';
-import {UserViewService} from './view/view.service';
 import {UserAddComponent} from './add/add.component';
 import {UserAddService} from './add/add.service';
 import {UserTokenComponent} from './token/token.component';
@@ -20,7 +18,6 @@ const COMPONENTS: Type<void>[] = [
   UserListComponent,
   UserEditComponent,
   UserUeditComponent,
-  UserViewComponent,
   UserAddComponent,
   UserTokenComponent,
   UserPushComponent];
@@ -35,7 +32,6 @@ const COMPONENTS: Type<void>[] = [
     UserService,
     UserEditService,
     UserUeditService,
-    UserViewService,
     UserAddService,
     UserTokenService,
     UserPushService
