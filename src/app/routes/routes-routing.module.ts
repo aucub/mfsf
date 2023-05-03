@@ -16,6 +16,7 @@ import {UserLockComponent} from './passport/lock/lock.component';
 import {UserLoginComponent} from './passport/login/login.component';
 import {UserRegisterResultComponent} from './passport/register-result/register-result.component';
 import {UserRegisterComponent} from './passport/register/register.component';
+import {UserListComponent} from "./user/list/list.component";
 
 const routes: Routes = [
   {
@@ -23,7 +24,8 @@ const routes: Routes = [
     component: LayoutBasicComponent,
     canActivate: [startPageGuard, SimpleGuard],
     children: [
-      {path: '', redirectTo: 'user', pathMatch: 'full'},
+      {path: '', redirectTo: './user/list', pathMatch: 'full'},
+      {path: '', redirectTo: 'user/list', pathMatch: 'full'},
       {path: 'dashboard', component: DashboardComponent, data: {title: '仪表盘', titleI18n: 'dashboard'}},
       {path: 'exception', loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule)},
       // 业务子模块

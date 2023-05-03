@@ -33,6 +33,33 @@
                     ></ais-highlight>
                   </div>
                 </div>
+                <div>
+                  返回:
+                  <div class="hit-res">
+                    <ais-highlight
+                      [hit]="hit"
+                      attribute="res"
+                    ></ais-highlight>
+                  </div>
+                </div>
+                <div>
+                  ID:
+                  <div class="hit-id">
+                    <ais-highlight
+                      [hit]="hit"
+                      attribute="id"
+                    ></ais-highlight>
+                  </div>
+                </div>
+                <div>
+                  <div class="hit-date">
+                    时间:
+                    <ais-highlight
+                      [hit]="hit"
+                      attribute="date"
+                    ></ais-highlight>
+                  </div>
+                </div>
               </li>
             </ol>
           </ng-template>

@@ -12,6 +12,10 @@
   margin-bottom: 2rem;
 }
 
+.ais-Hits-list {
+  width: 1300px;
+}
+
 .pagination {
   margin: 2rem auto;
   text-align: center;

@@ -19,7 +19,7 @@ const alainConfig: AlainConfig = {
     license: ``,
     licenseA: ``
   },
-  auth: {login_url: '/passport/login', ignores: [/login\//]}
+  auth: {login_url: '/passport/login', ignores: [/login\/doLogin/]}
 };
 
 const alainModules: any[] = [AlainThemeModule.forRoot(), DelonACLModule.forRoot()];

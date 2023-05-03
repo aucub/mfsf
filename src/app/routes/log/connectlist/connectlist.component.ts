@@ -3,6 +3,7 @@ import {STColumn, STComponent} from '@delon/abc/st';
 import {SFSchema} from '@delon/form';
 import {_HttpClient, ModalHelper} from '@delon/theme';
 import {LogPushComponent} from "../push/push.component";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'app-log-connectlist',
@@ -11,7 +12,7 @@ import {LogPushComponent} from "../push/push.component";
 export class LogConnectlistComponent implements OnInit {
   url = `/user/connectList`;
   method = 'GET';
-  resReName = {list: 'data.records'};
+  resReName = {list: 'data'};
   searchSchema: SFSchema = {
     properties: {
       keyword: {
@@ -48,7 +49,7 @@ export class LogConnectlistComponent implements OnInit {
   ];
   @ViewChild('st') private readonly st!: STComponent;
 
-  constructor(private http: _HttpClient, private modal: ModalHelper) {
+  constructor(private http: _HttpClient, private msgSrv: NzMessageService, private modal: ModalHelper) {
   }
 
   ngOnInit(): void {
@@ -58,5 +59,14 @@ export class LogConnectlistComponent implements OnInit {
     // this.modal
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
+  }
+
+  clearConnectCache(): void {
+    this.http.get("/searchOnline/clearConnectCache").subscribe(
+      res => {
+        this.msgSrv.success('刷新成功');
+      }
+    )
+    this.st.reload();
   }
 }

@@ -1,5 +1,6 @@
 <nz-card>
   <sf (formReset)="st.reset($event)" (formSubmit)="st.reset($event)" [schema]="searchSchema" mode="search"></sf>
+  <button (click)="clearConnectCache()" nz-button nzType="primary">刷新</button>
   <st #st [columns]="columns" [data]="url"
       [req]="{ method: method }" [res]="{ reName: resReName }"></st>
 </nz-card>

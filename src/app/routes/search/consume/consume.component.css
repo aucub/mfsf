@@ -1,11 +1,15 @@
 .container {
-  max-width: 1200px;
+  max-width: 1350px;
   margin: 0 auto;
   padding: 1rem;
 }
 
 .search-panel {
   display: flex;
+}
+
+.ais-Hits-list {
+  width: 1300px;
 }
 
 .searchbox {

@@ -16,7 +16,7 @@ export class SearchPushComponent implements OnInit {
     }
   );
   searchconfig = {
-    indexName: "PushMessage",
+    indexName: "PushRecord",
     searchClient: this.searchClient
   };
 

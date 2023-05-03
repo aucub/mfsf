@@ -35,10 +35,12 @@ export class SettingsAccountComponent implements OnInit {
   };
   pui: SFUISchema = {
     $oldPassword: {
-      widget: 'string',
+      type: 'password',
+      widget: 'string'
     },
     $newPassword: {
-      widget: 'string',
+      type: 'password',
+      widget: 'string'
     },
   };
 

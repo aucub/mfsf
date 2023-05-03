@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {STColumn, STComponent} from '@delon/abc/st';
 import {SFSchema} from '@delon/form';
 import {_HttpClient, ModalHelper} from '@delon/theme';
+import * as http from "http";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'app-log-onlinelist',
@@ -39,7 +41,7 @@ export class LogOnlinelistComponent implements OnInit {
   ];
   @ViewChild('st') private readonly st!: STComponent;
 
-  constructor(private http: _HttpClient, private modal: ModalHelper) {
+  constructor(private http: _HttpClient, private msgSrv: NzMessageService, private modal: ModalHelper) {
   }
 
   ngOnInit(): void {
@@ -50,4 +52,14 @@ export class LogOnlinelistComponent implements OnInit {
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
   }
+
+  clearOnLineCache(): void {
+    this.http.get("/searchOnline/clearOnLineCache").subscribe(
+      res => {
+        this.msgSrv.success('刷新成功');
+      }
+    )
+    this.st.reload();
+  }
+
 }

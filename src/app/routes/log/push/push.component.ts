@@ -47,7 +47,7 @@ export class LogPushComponent implements OnInit {
       route: value.route,
       body: value.body
     }).subscribe(res => {
-      this.msgSrv.success('保存成功');
+      this.msgSrv.success('推送成功');
       this.modal.close(true);
     });
   }
