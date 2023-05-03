@@ -84,7 +84,7 @@ export class StartupService {
     this.aclService.setFull(true);
     // Menu data, https://ng-alain.com/theme/menu
     this.menuService.add([
-      {
+      /*{
         text: 'Main',
         group: true,
         children: [
@@ -94,7 +94,7 @@ export class StartupService {
             icon: {type: 'icon', value: 'dashboard'}
           }
         ]
-      },
+      },*/
       {
         text: '用户',
         group: true,
