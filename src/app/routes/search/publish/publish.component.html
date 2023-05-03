@@ -14,12 +14,98 @@
               <li *ngFor="let hit of hits" class="ais-Hits-item">
                 <div>
                   <div class="hit-messageId">
+                    消息ID:
                     <ais-highlight [hit]="hit" attribute="messageId"></ais-highlight>
                   </div>
                   <div class="hit-source">
+                    源:
                     <ais-highlight
                       [hit]="hit"
                       attribute="source"
+                    ></ais-highlight>
+                  </div>
+                  <div class="hit-type">
+                    类型:
+                    <ais-highlight
+                      [hit]="hit"
+                      attribute="type"
+                    ></ais-highlight>
+                  </div>
+                  <div class="hit-appId">
+                    应用ID:
+                    <ais-highlight
+                      [hit]="hit"
+                      attribute="appId"
+                    ></ais-highlight>
+                  </div>
+                  <div class="hit-userId">
+                    用户ID:
+                    <ais-highlight
+                      [hit]="hit"
+                      attribute="userId"
+                    ></ais-highlight>
+                  </div>
+                  <div class="hit-priority">
+                    优先:
+                    <ais-highlight
+                      [hit]="hit"
+                      attribute="priority"
+                    ></ais-highlight>
+                  </div>
+                  <div class="hit-expiration">
+                    过期:
+                    <ais-highlight
+                      [hit]="hit"
+                      attribute="expiration"
+                    ></ais-highlight>
+                  </div>
+                  <div class="hit-publishingId">
+                    发布ID:
+                    <ais-highlight
+                      [hit]="hit"
+                      attribute="publishingId"
+                    ></ais-highlight>
+                  </div>
+                  <div class="hit-dataContentType">
+                    内容类型:
+                    <ais-highlight
+                      [hit]="hit"
+                      attribute="dataContentType"
+                    ></ais-highlight>
+                  </div>
+                  <div class="hit-contentEncoding">
+                    内容编码:
+                    <ais-highlight
+                      [hit]="hit"
+                      attribute="contentEncoding"
+                    ></ais-highlight>
+                  </div>
+                  <div class="hit-subject">
+                    主题:
+                    <ais-highlight
+                      [hit]="hit"
+                      attribute="subject"
+                    ></ais-highlight>
+                  </div>
+                  <div class="hit-body">
+                    内容:
+                    <ais-highlight
+                      [hit]="hit"
+                      attribute="body"
+                    ></ais-highlight>
+                  </div>
+                  <div class="hit-submit">
+                    提交:
+                    <ais-highlight
+                      [hit]="hit"
+                      attribute="submit"
+                    ></ais-highlight>
+                  </div>
+                  <div class="hit-date">
+                    时间:
+                    <ais-highlight
+                      [hit]="hit"
+                      attribute="date"
                     ></ais-highlight>
                   </div>
                 </div>

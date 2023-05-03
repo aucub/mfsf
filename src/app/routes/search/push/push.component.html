@@ -13,13 +13,23 @@
             <ol class="ais-Hits-list">
               <li *ngFor="let hit of hits" class="ais-Hits-item">
                 <div>
-                  <div class="hit-messageId">
-                    <ais-highlight [hit]="hit" attribute="messageId"></ais-highlight>
+                  用户ID:
+                  <div class="hit-userId">
+                    <ais-highlight [hit]="hit" attribute="userId"></ais-highlight>
                   </div>
-                  <div class="hit-source">
+                </div>
+                <div>
+                  路由:
+                  <div class="hit-route">
+                    <ais-highlight [hit]="hit" attribute="route"></ais-highlight>
+                  </div>
+                </div>
+                <div>
+                  内容:
+                  <div class="hit-body">
                     <ais-highlight
                       [hit]="hit"
-                      attribute="source"
+                      attribute="body"
                     ></ais-highlight>
                   </div>
                 </div>

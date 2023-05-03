@@ -18,8 +18,8 @@ import {finalize} from 'rxjs';
 })
 export class UserLoginComponent implements OnDestroy {
   form = this.fb.nonNullable.group({
-    userName: ['', [Validators.required, Validators.pattern(/^(root|user)$/)]],
-    password: ['', [Validators.required, Validators.pattern(/^(root)$/)]],
+    userName: ['', [Validators.required]],
+    password: ['', [Validators.required]],
     remember: [true]
   });
 

@@ -16,7 +16,7 @@ export class SearchConsumeComponent implements OnInit {
     }
   );
   searchconfig = {
-    indexName: "PublishRecord",
+    indexName: "ConsumeRecord",
     searchClient: this.searchClient
   };
 

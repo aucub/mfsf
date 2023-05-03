@@ -13,8 +13,39 @@
             <ol class="ais-Hits-list">
               <li *ngFor="let hit of hits" class="ais-Hits-item">
                 <div>
+                  消息ID:
                   <div class="hit-messageId">
                     <ais-highlight [hit]="hit" attribute="messageId"></ais-highlight>
+                  </div>
+                </div>
+                <div>
+                  发布ID:
+                  <div class="hit-publishingId">
+                    <ais-highlight [hit]="hit" attribute="publishingId"></ais-highlight>
+                  </div>
+                </div>
+                <div>
+                  偏移:
+                  <div class="hit-offset">
+                    <ais-highlight [hit]="hit" attribute="offset"></ais-highlight>
+                  </div>
+                </div>
+                <div>
+                  队列:
+                  <div class="hit-queue">
+                    <ais-highlight [hit]="hit" attribute="queue"></ais-highlight>
+                  </div>
+                </div>
+                <div>
+                  用户ID:
+                  <div class="hit-userId">
+                    <ais-highlight [hit]="hit" attribute="userId"></ais-highlight>
+                  </div>
+                </div>
+                <div>
+                  时间:
+                  <div class="hit-date">
+                    <ais-highlight [hit]="hit" attribute="date"></ais-highlight>
                   </div>
                 </div>
               </li>
