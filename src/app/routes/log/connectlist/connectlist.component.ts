@@ -2,8 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {STColumn, STComponent} from '@delon/abc/st';
 import {SFSchema} from '@delon/form';
 import {_HttpClient, ModalHelper} from '@delon/theme';
-import {LogPushComponent} from "../push/push.component";
-import {NzMessageService} from "ng-zorro-antd/message";
+import {LogPushComponent} from '../push/push.component';
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-log-connectlist',
@@ -22,6 +22,7 @@ export class LogConnectlistComponent implements OnInit {
     }
   };
   columns: STColumn[] = [
+    {title: 'ID', index: 'id'},
     {title: '用户名', index: 'username'},
     {title: '昵称', index: 'nickname'},
     {title: '上次登录时间', index: 'loginTime'},
@@ -30,7 +31,7 @@ export class LogConnectlistComponent implements OnInit {
     {title: '更新者', index: 'updater'},
     {title: '注册时间', index: 'createTime'},
     {title: '更新时间', index: 'lastUpdateTime'},
-    {title: '类型', index: 'type'},
+    //{title: '类型', index: 'type'},
     {
       title: '',
       buttons: [
@@ -62,11 +63,9 @@ export class LogConnectlistComponent implements OnInit {
   }
 
   clearConnectCache(): void {
-    this.http.get("/searchOnline/clearConnectCache").subscribe(
-      res => {
-        this.msgSrv.success('刷新成功');
-      }
-    )
+    this.http.get('/searchOnline/clearConnectCache').subscribe(res => {
+      this.msgSrv.success('刷新成功');
+    });
     this.st.reload();
   }
 }

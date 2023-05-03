@@ -5,7 +5,7 @@ import {_HttpClient, ModalHelper} from '@delon/theme';
 
 @Component({
   selector: 'app-query-consume',
-  templateUrl: './consume.component.html',
+  templateUrl: './consume.component.html'
 })
 export class QueryConsumeComponent implements OnInit {
   schema: SFSchema = {
@@ -26,7 +26,7 @@ export class QueryConsumeComponent implements OnInit {
   params = {
     start: new Date(new Date().valueOf() - 60 * 60 * 1000).toISOString(),
     stop: new Date().toISOString()
-  }
+  };
   resReName = {list: 'data.records'};
   searchSchema: SFSchema = {
     properties: {
@@ -38,7 +38,7 @@ export class QueryConsumeComponent implements OnInit {
   };
   columns: STColumn[] = [
     {title: '消息ID', index: 'messageId'},
-    {title: '发布ID', index: 'publishingId'},
+    // {title: '发布ID', index: 'publishingId'},
     {title: '偏移', index: 'offset'},
     {title: '队列', index: 'queue'},
     {title: '用户ID', index: 'userId'},

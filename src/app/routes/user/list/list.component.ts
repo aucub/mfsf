@@ -32,6 +32,7 @@ export class UserListComponent implements OnInit {
   columns: STColumn[] = [
     {title: '编号', type: 'checkbox'},
     {title: '用户名', index: 'username'},
+    {title: 'ID', index: 'id'},
     {title: '昵称', index: 'nickname', render: 'nicknameTpl'},
     {title: '上次登录时间', index: 'loginTime'},
     {title: '备注', index: 'note', render: 'noteTpl'},
@@ -39,7 +40,7 @@ export class UserListComponent implements OnInit {
     {title: '更新者', index: 'updater'},
     {title: '注册时间', index: 'createTime'},
     {title: '更新时间', index: 'lastUpdateTime'},
-    {title: '类型', index: 'type'},
+    // { title: '类型', index: 'type' },
     {
       title: '',
       buttons: [
@@ -66,7 +67,7 @@ export class UserListComponent implements OnInit {
           text: '删除',
           icon: 'delete',
           type: 'del',
-          click: (_record) => this.delete(_record['id'])
+          click: _record => this.delete(_record['id'])
         },
         {
           text: 'token',
